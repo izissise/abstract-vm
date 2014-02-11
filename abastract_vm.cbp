@@ -38,6 +38,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Makefile" />
+		<Unit filename="src/IOperator.hpp" />
 		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<envvars />
