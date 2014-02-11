@@ -28,7 +28,7 @@ OBJ		=	$(patsubst %.cpp,${OBJDIR}%.o, $(SRC))
 dummy		:=	$(shell test -d $(OBJDIR) || mkdir -p $(OBJDIR))
 dummy		:=	$(shell test -d $(SRCDIR) || mkdir -p $(SRCDIR))
 
-$(OBJDIR)%.o:		$(patsubst %.c,${SRCDIR}%.cpp, %.cpp)
+$(OBJDIR)%.o:		$(patsubst %.cpp,${SRCDIR}%.cpp, %.cpp)
 			@if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
 			@echo -e "Compiling $< { $(CFLAGS) }" | sed 's/^-e //' \
 			| sed 's/[-a-zA-Z]\+/\x1B[31m&\x1B[0m/g' \
