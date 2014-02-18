@@ -64,10 +64,15 @@ template<typename T>
 IOperand* Operand<T>::operator+(const IOperand &rhs) const
 {
   std::stringstream stream(toString());
+  IOperand* npreci;
   T res;
   T tmp;
 
-//si l'autre plus precis, cree un nouveau this du type plus precis, et return new type + rhs
+  if (getPrecision() < rhs.getPrecision())
+    {
+      npreci = Cpu::createOperand(rhs.getType, toString());
+      return ((*npreci) + rhs);
+    }
   res << stream;
   stream.clear();
   stream.str(rhs.toString());
@@ -80,25 +85,90 @@ IOperand* Operand<T>::operator+(const IOperand &rhs) const
 template<typename T>
 IOperand* Operand<T>::operator-(const IOperand &rhs) const
 {
+  std::stringstream stream(toString());
+  IOperand* npreci;
+  T res;
+  T tmp;
 
+  if (getPrecision() < rhs.getPrecision())
+    {
+      npreci = Cpu::createOperand(rhs.getType, toString());
+      return ((*npreci) - rhs);
+    }
+  res << stream;
+  stream.clear();
+  stream.str(rhs.toString());
+  tmp << stream;
+  stream.clear();
+  stream << (res - tmp);
+  return (Cpu::createOperand(_type, stream.str()));
 }
 
 template<typename T>
 IOperand* Operand<T>::operator*(const IOperand &rhs) const
 {
+  std::stringstream stream(toString());
+  IOperand* npreci;
+  T res;
+  T tmp;
 
+  if (getPrecision() < rhs.getPrecision())
+    {
+      npreci = Cpu::createOperand(rhs.getType, toString());
+      return ((*npreci) * rhs);
+    }
+  res << stream;
+  stream.clear();
+  stream.str(rhs.toString());
+  tmp << stream;
+  stream.clear();
+  stream << (res * tmp);
+  return (Cpu::createOperand(_type, stream.str()));
 }
 
 template<typename T>
-IOperand* Operand<T>::operator/(const IOperand &rhs) const
+IOperand* Operand<T>::operator/(const IOperand &rhs) const //throw an exception in case of float double
 {
+  std::stringstream stream(toString());
+  IOperand* npreci;
+  T res;
+  T tmp;
 
+  if (getPrecision() < rhs.getPrecision())
+    {
+      npreci = Cpu::createOperand(rhs.getType, toString());
+      return ((*npreci) / rhs);
+    }
+  res << stream;
+  stream.clear();
+  stream.str(rhs.toString());
+  tmp << stream;
+  stream.clear();
+  stream << (res / tmp);
+  return (Cpu::createOperand(_type, stream.str()));
 }
 
 template<typename T>
-IOperand* Operand<T>::operator%(const IOperand &rhs) const
+IOperand* Operand<T>::operator%(const IOperand &rhs) const //throw an exception in case of float double
 {
+  std::stringstream stream(toString());
+  IOperand* npreci;
+  T res;
+  T tmp;
 
+  if (getPrecision() < rhs.getPrecision())
+    {
+      npreci = Cpu::createOperand(rhs.getType, toString());
+      return ((*npreci) % rhs);
+    }
+  res << stream;
+  stream.clear();
+  stream.str(rhs.toString());
+  tmp << stream;
+  stream.clear();
+  stream << (res % tmp);
+  return (Cpu::createOperand(_type, stream.str()));
 }
 
 #endif // OPERAND_HPP_INCLUDED
+
