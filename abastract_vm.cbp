@@ -22,6 +22,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="src/" />
 				</Compiler>
 				<MakeCommands>
 					<Build command="$make -f $makefile all" />
@@ -41,6 +42,8 @@
 		<Unit filename="src/EOperator.hpp">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="src/Fault.cpp" />
+		<Unit filename="src/Fault.hpp" />
 		<Unit filename="src/IOperator.hpp" />
 		<Unit filename="src/Operand.cpp" />
 		<Unit filename="src/Operand.hpp" />
