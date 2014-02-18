@@ -2,6 +2,9 @@
 #define OPERAND_HPP_INCLUDED
 
 #include <stdint-gcc.h>
+#include <string>
+#include <sstream>
+#include "cpu.hpp"
 #include "EOperator.hpp"
 #include "IOperator.hpp"
 
@@ -12,6 +15,7 @@ public:
   Operand(const std::string& value, eOperandType type);
   virtual ~Operand();
 
+  virtual const std::string& toString() const;
   virtual int getPrecision();
   virtual eOperandType getType();
 
@@ -39,6 +43,12 @@ Operand<T>::~Operand()
 }
 
 template<typename T>
+const std::string& Operand<T>::toString() const
+{
+  return (_value);
+}
+
+template<typename T>
 int Operand<T>::getPrecision()
 {
   return (_type);
@@ -47,13 +57,24 @@ int Operand<T>::getPrecision()
 template<typename T>
 eOperandType Operand<T>::getType()
 {
-  return (_type); //not this
+  return (_type);
 }
 
 template<typename T>
 IOperand* Operand<T>::operator+(const IOperand &rhs) const
 {
+  std::stringstream stream(toString());
+  T res;
+  T tmp;
 
+//si l'autre plus precis, cree un nouveau this du type plus precis, et return new type + rhs
+  res << stream;
+  stream.clear();
+  stream.str(rhs.toString());
+  tmp << stream;
+  stream.clear();
+  stream << (res + tmp);
+  return (Cpu::createOperand(_type, stream.str()));
 }
 
 template<typename T>
