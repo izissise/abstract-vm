@@ -6,7 +6,6 @@
 		<Option makefile_is_custom="1" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="src/;" />
 		<MakeCommands>
 			<Build command="$make -f $makefile all" />
 			<CompileFile command="$make -f $makefile all" />
@@ -39,17 +38,14 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Makefile" />
-		<Unit filename="include/cpu.h">
-			<Option virtualFolder="src/" />
-		</Unit>
 		<Unit filename="src/EOperator.hpp">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="src/IOperator.hpp" />
-		<Unit filename="src/cpu.cpp" />
-		<Unit filename="src/cpu.h" />
 		<Unit filename="src/Operand.cpp" />
 		<Unit filename="src/Operand.hpp" />
+		<Unit filename="src/cpu.cpp" />
+		<Unit filename="src/cpu.hpp" />
 		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<envvars />
