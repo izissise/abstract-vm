@@ -2,6 +2,7 @@
 #define IOPERATOR_HPP_INCLUDED
 
 #include <string>
+#include "EOperator.hpp"
 
 class IOperand
 {
