@@ -1,41 +1,41 @@
-#include "cpu.h"
+#include "Cpu.h"
 
-cpu::cpu()
+Cpu::Cpu()
 {
     //ctor
 }
 
-cpu::~cpu()
+Cpu::~Cpu()
 {
     //dtor
 }
 
-IOperand * createInt8(const std::string & value)
+IOperand * Cpu::createInt8(const std::string & value)
 {
 	return(new Int8(value);)
 }
 
-IOperand * createInt16(const std::string & value)
+IOperand * Cpu::createInt16(const std::string & value)
 {
 	return(new Int8(value);)
 }
 
-IOperand * createInt32(const std::string & value)
+IOperand * Cpu::createInt32(const std::string & value)
 {
 	return(new Int8(value);)
 }
 
-IOperand * createFloat(const std::string & value)
+IOperand * Cpu::createFloat(const std::string & value)
 {
 	return(new Int8(value);)
 }
 
-IOperand * createDouble(const std::string & value)
+IOperand * Cpu::createDouble(const std::string & value)
 {
 	return(new Int8(value);)
 }
 
-IOperand *cpu::createOperand(eOperandType type, const std::string & value)
+IOperand *Cpu::createOperand(eOperandType type, const std::string & value)
 {
     std::map<eOperandType,IOperand*(*)(const std::string &)> createType;
 

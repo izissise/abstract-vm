@@ -3,12 +3,12 @@
 
 #include "EOperator.hpp"
 
-class cpu
+class Cpu
 {
 	public:
-		cpu();
-		~cpu();
-		IOperand *cpu::createOperand(eOperandType type, const std::string & value);
+		Cpu();
+		~Cpu();
+		IOperand *createOperand(eOperandType type, const std::string & value);
 	private:
 		IOperand * createInt8(const std::string & value);
 		IOperand * createInt16(const std::string & value);
