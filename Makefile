@@ -8,7 +8,8 @@
 ## Last update Tue Feb 11 18:08:18 2014 Hugues
 ##
 
-SRC		=	main.cpp
+SRC		=	main.cpp \
+			Operand.cpp
 
 CC		=	g++
 

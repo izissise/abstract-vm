@@ -48,6 +48,8 @@
 		<Unit filename="src/IOperator.hpp" />
 		<Unit filename="src/cpu.cpp" />
 		<Unit filename="src/cpu.h" />
+		<Unit filename="src/Operand.cpp" />
+		<Unit filename="src/Operand.hpp" />
 		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<envvars />
