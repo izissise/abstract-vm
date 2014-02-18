@@ -10,7 +10,8 @@
 
 SRC		=	main.cpp \
 			Operand.cpp \
-			Fault.cpp
+			Fault.cpp \
+			cpu.cpp
 
 CC		=	g++
 

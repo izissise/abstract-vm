@@ -1,16 +1,24 @@
-#include "Cpu.h"
+#include "cpu.hpp"
+#include "Operand.hpp"
+
+Cpu Cpu::_instance = Cpu();
 
 Cpu::Cpu()
 {
-  _typemap[::Int8] = &createInt8;
-  _typemap[::Int16] = &createInt16;
-  _typemap[::Int32] = &createInt32;
-  _typemap[::Float] = &createFloat;
-  _typemap[::Double] = &createDouble;
+  _typemap[::Int8] = &Cpu::createInt8;
+  _typemap[::Int16] = &Cpu::createInt16;
+  _typemap[::Int32] = &Cpu::createInt32;
+  _typemap[::Float] = &Cpu::createFloat;
+  _typemap[::Double] = &Cpu::createDouble;
 }
 
 Cpu::~Cpu()
 {
+}
+
+Cpu& Cpu::Instance()
+{
+  return (_instance);
 }
 
 IOperand* Cpu::createInt8(const std::string& value)

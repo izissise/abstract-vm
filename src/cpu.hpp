@@ -2,6 +2,8 @@
 #define CPU_H
 
 #include <string>
+#include <map>
+#include <stdint.h>
 #include "IOperator.hpp"
 #include "EOperator.hpp"
 
@@ -23,11 +25,11 @@ public:
   IOperand* createOperand(eOperandType type, const std::string& value);
 private:
   static Cpu _instance;
-  std::map<eOperandType, IOperand*(*)(const std::string&)> _typemap;
+  std::map<eOperandType, IOperand* (Cpu::*)(const std::string&)> _typemap;
 
 private:
-  Cpu& operator=(const Cpu& c) {};
-  Cpu(const Cpu& c) {};
+  Cpu& operator=(const Cpu&) {return (*this);};
+  Cpu(const Cpu&) {};
   Cpu();
   ~Cpu();
 
