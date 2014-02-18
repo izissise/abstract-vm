@@ -12,27 +12,27 @@ Cpu::~Cpu()
 
 IOperand * Cpu::createInt8(const std::string & value)
 {
-	return(new Int8(value);)
+	return(new Int8(value));
 }
 
 IOperand * Cpu::createInt16(const std::string & value)
 {
-	return(new Int8(value);)
+	return(new Int8(value));
 }
 
 IOperand * Cpu::createInt32(const std::string & value)
 {
-	return(new Int8(value);)
+	return(new Int8(value)):
 }
 
 IOperand * Cpu::createFloat(const std::string & value)
 {
-	return(new Int8(value);)
+	return(new Int8(value));
 }
 
 IOperand * Cpu::createDouble(const std::string & value)
 {
-	return(new Int8(value);)
+	return(new Int8(value));
 }
 
 IOperand *Cpu::createOperand(eOperandType type, const std::string & value)
