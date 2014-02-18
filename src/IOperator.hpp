@@ -1,6 +1,8 @@
 #ifndef IOPERATOR_HPP_INCLUDED
 #define IOPERATOR_HPP_INCLUDED
 
+#include <string>
+
 class IOperand
 {
     public:
