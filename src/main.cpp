@@ -1,7 +1,16 @@
 #include <iostream>
+#include "Fault.hpp"
 
 int main()
 {
-    return 0;
+  try
+    {
+
+    }
+  catch (Fault& e)
+    {
+      std::cerr << e.what() << std::endl;
+    }
+  return 0;
 }
 
