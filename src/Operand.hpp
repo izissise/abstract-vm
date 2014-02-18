@@ -2,13 +2,14 @@
 #define OPERAND_HPP_INCLUDED
 
 #include <stdint-gcc.h>
+#include "EOperator.hpp"
 #include "IOperator.hpp"
 
 template<typename T>
 class Operand : public IOperand
 {
 public:
-  Operand(const std::string& value);
+  Operand(const std::string& value, eOperandType type);
   virtual ~Operand();
 
   virtual int getPrecision();
@@ -22,12 +23,14 @@ public:
 
 private:
   std::string _value;
+  eOperandType _type;
 };
 
 template<typename T>
-Operand<T>::Operand(const std::string& value)
+Operand<T>::Operand(const std::string& value, eOperandType type)
 {
   _value = value;
+  _type = type;
 }
 
 template<typename T>
@@ -38,13 +41,13 @@ Operand<T>::~Operand()
 template<typename T>
 int Operand<T>::getPrecision()
 {
-  return (sizeof(T));
+  return (_type);
 }
 
 template<typename T>
 eOperandType Operand<T>::getType()
 {
-  return (sizeof(T)); //not this
+  return (_type); //not this
 }
 
 template<typename T>

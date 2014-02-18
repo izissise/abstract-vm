@@ -2,47 +2,48 @@
 
 Cpu::Cpu()
 {
-    //ctor
+  //ctor
 }
 
 Cpu::~Cpu()
 {
-    //dtor
+  //dtor
 }
 
 IOperand * Cpu::createInt8(const std::string & value)
 {
-	return(new Int8(value));
+  return(new Int8(value, ::Int8));
 }
 
 IOperand * Cpu::createInt16(const std::string & value)
 {
-	return(new Int8(value));
+  return(new Int16(value, ::Int16));
 }
 
 IOperand * Cpu::createInt32(const std::string & value)
 {
-	return(new Int8(value)):
-}
+  return(new Int32(value, ::Int32)):
+  }
 
 IOperand * Cpu::createFloat(const std::string & value)
 {
-	return(new Int8(value));
+  return(new Float(value, ::Float));
 }
 
 IOperand * Cpu::createDouble(const std::string & value)
 {
-	return(new Int8(value));
+  return(new Double(value, ::Double));
 }
 
 IOperand *Cpu::createOperand(eOperandType type, const std::string & value)
 {
-    std::map<eOperandType,IOperand*(*)(const std::string &)> createType;
+  std::map<eOperandType, IOperand*(*)(const std::string&)> createType;
 
-    createType[::Int8]=&createInt8;
-    createType[::Int16]=&createInt16;
-    createType[::Int32]=&createInt32;
-    createType[::Float]=&createFloat;
-    createType[::Double]=&createDouble;
-    return(createType[type](value));
+  createType[::Int8] = &createInt8;
+  createType[::Int16] = &createInt16;
+  createType[::Int32] = &createInt32;
+  createType[::Float] = &createFloat;
+  createType[::Double] = &createDouble;
+  return(createType[type](value));
 }
+
