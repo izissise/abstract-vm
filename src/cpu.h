@@ -1,6 +1,7 @@
 #ifndef CPU_H
 #define CPU_H
 
+#include "EOperator.hpp"
 
 class cpu
 {
