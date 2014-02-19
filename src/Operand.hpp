@@ -13,7 +13,7 @@ template<typename T>
 class Operand : public IOperand
 {
 public:
-  Operand(const std::string& value, eOperandType type);
+  explicit Operand(const std::string& value, eOperandType type);
   virtual ~Operand();
 
   virtual const std::string& toString() const;

@@ -23,58 +23,97 @@ Cpu& Cpu::Instance()
 
 void Cpu::push(IOperand* nb)
 {
-  //push on memory
+  _ram.push(nb);
 }
 
-IOperand* Cpu::pop()
+void Cpu::pop()
 {
-  //pop from memory
-  return (NULL);
+  _ram.pop();
 }
 
 void Cpu::dump()
 {
+  _ram.dump();
 }
 
 bool Cpu::assert(IOperand* nb) const
 {
-  return (true);
+//todo assert
+  if (nb == NULL)
+    return (true);
+  return (false);
 }
 
 
 void Cpu::add()
 {
+  IOperand* a;
+  IOperand* b;
 
+  a = _ram.top();
+  _ram.pop();
+  b = _ram.top();
+  _ram.pop();
+  _ram.push((*a) + (*b));
 }
 
 void Cpu::sub()
 {
+  IOperand* a;
+  IOperand* b;
 
+  a = _ram.top();
+  _ram.pop();
+  b = _ram.top();
+  _ram.pop();
+  _ram.push((*a) - (*b));
 }
 
 void Cpu::mul()
 {
+  IOperand* a;
+  IOperand* b;
 
+  a = _ram.top();
+  _ram.pop();
+  b = _ram.top();
+  _ram.pop();
+  _ram.push((*a) * (*b));
 }
 
 void Cpu::div()
 {
+  IOperand* a;
+  IOperand* b;
 
+  a = _ram.top();
+  _ram.pop();
+  b = _ram.top();
+  _ram.pop();
+  _ram.push((*a) / (*b));
 }
 
 void Cpu::mod()
 {
+  IOperand* a;
+  IOperand* b;
 
+  a = _ram.top();
+  _ram.pop();
+  b = _ram.top();
+  _ram.pop();
+  _ram.push((*a) % (*b));
 }
 
 void Cpu::print() const
 {
-
+  //todo
+  std::cout << "Not implemented" << std::endl;
 }
 
 void Cpu::exit() const
 {
-
+//exit ?
 }
 
 IOperand* Cpu::createInt8(const std::string& value)
