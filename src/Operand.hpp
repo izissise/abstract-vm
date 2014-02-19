@@ -1,9 +1,10 @@
 #ifndef OPERAND_HPP_INCLUDED
 #define OPERAND_HPP_INCLUDED
 
-#include <stdint-gcc.h>
+#include <stdint.h>
 #include <string>
 #include <sstream>
+#include <cmath>
 #include "cpu.hpp"
 #include "EOperator.hpp"
 #include "IOperator.hpp"
@@ -16,8 +17,8 @@ public:
   virtual ~Operand();
 
   virtual const std::string& toString() const;
-  virtual int getPrecision();
-  virtual eOperandType getType();
+  virtual int getPrecision() const;
+  virtual eOperandType getType() const;
 
   virtual IOperand* operator+(const IOperand &rhs) const; // Somme
   virtual IOperand* operator-(const IOperand &rhs) const; // Difference
@@ -49,13 +50,13 @@ const std::string& Operand<T>::toString() const
 }
 
 template<typename T>
-int Operand<T>::getPrecision()
+int Operand<T>::getPrecision() const
 {
   return (_type);
 }
 
 template<typename T>
-eOperandType Operand<T>::getType()
+eOperandType Operand<T>::getType() const
 {
   return (_type);
 }
@@ -65,21 +66,24 @@ IOperand* Operand<T>::operator+(const IOperand &rhs) const
 {
   std::stringstream stream(toString());
   IOperand* npreci;
-  T res;
+  Cpu& proc = Cpu::Instance();
+  T tmpa;
   T tmp;
+  T res;
 
   if (getPrecision() < rhs.getPrecision())
     {
-      npreci = Cpu::createOperand(rhs.getType, toString());
+      npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) + rhs);
     }
-  res << stream;
+  stream >> tmpa;
   stream.clear();
   stream.str(rhs.toString());
-  tmp << stream;
+  stream >> tmp;
   stream.clear();
-  stream << (res + tmp);
-  return (Cpu::createOperand(_type, stream.str()));
+  res = (tmpa + tmp);
+  stream << res;
+  return (proc.createOperand(_type, stream.str()));
 }
 
 template<typename T>
@@ -87,21 +91,24 @@ IOperand* Operand<T>::operator-(const IOperand &rhs) const
 {
   std::stringstream stream(toString());
   IOperand* npreci;
-  T res;
+  Cpu& proc = Cpu::Instance();
+  T tmpa;
   T tmp;
+  T res;
 
   if (getPrecision() < rhs.getPrecision())
     {
-      npreci = Cpu::createOperand(rhs.getType, toString());
+      npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) - rhs);
     }
-  res << stream;
+  stream >> tmpa;
   stream.clear();
   stream.str(rhs.toString());
-  tmp << stream;
+  stream >> tmp;
   stream.clear();
-  stream << (res - tmp);
-  return (Cpu::createOperand(_type, stream.str()));
+  res = (tmpa - tmp);
+  stream << res;
+  return (proc.createOperand(_type, stream.str()));
 }
 
 template<typename T>
@@ -109,21 +116,24 @@ IOperand* Operand<T>::operator*(const IOperand &rhs) const
 {
   std::stringstream stream(toString());
   IOperand* npreci;
-  T res;
+  Cpu& proc = Cpu::Instance();
+  T tmpa;
   T tmp;
+  T res;
 
   if (getPrecision() < rhs.getPrecision())
     {
-      npreci = Cpu::createOperand(rhs.getType, toString());
+      npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) * rhs);
     }
-  res << stream;
+  stream >> tmpa;
   stream.clear();
   stream.str(rhs.toString());
-  tmp << stream;
+  stream >> tmp;
   stream.clear();
-  stream << (res * tmp);
-  return (Cpu::createOperand(_type, stream.str()));
+  res = (tmpa * tmp);
+  stream << res;
+  return (proc.createOperand(_type, stream.str()));
 }
 
 template<typename T>
@@ -131,21 +141,24 @@ IOperand* Operand<T>::operator/(const IOperand &rhs) const //throw an exception 
 {
   std::stringstream stream(toString());
   IOperand* npreci;
-  T res;
+  Cpu& proc = Cpu::Instance();
+  T tmpa;
   T tmp;
+  T res;
 
   if (getPrecision() < rhs.getPrecision())
     {
-      npreci = Cpu::createOperand(rhs.getType, toString());
+      npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) / rhs);
     }
-  res << stream;
+  stream >> tmpa;
   stream.clear();
   stream.str(rhs.toString());
-  tmp << stream;
+  stream >> tmp;
   stream.clear();
-  stream << (res / tmp);
-  return (Cpu::createOperand(_type, stream.str()));
+  res = (tmpa / tmp);
+  stream << res;
+  return (proc.createOperand(_type, stream.str()));
 }
 
 template<typename T>
@@ -153,21 +166,24 @@ IOperand* Operand<T>::operator%(const IOperand &rhs) const //throw an exception 
 {
   std::stringstream stream(toString());
   IOperand* npreci;
-  T res;
+  Cpu& proc = Cpu::Instance();
+  T tmpa;
   T tmp;
+  T res;
 
   if (getPrecision() < rhs.getPrecision())
     {
-      npreci = Cpu::createOperand(rhs.getType, toString());
+      npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) % rhs);
     }
-  res << stream;
+  stream >> tmpa;
   stream.clear();
   stream.str(rhs.toString());
-  tmp << stream;
+  stream >> tmp;
   stream.clear();
-  stream << (res % tmp);
-  return (Cpu::createOperand(_type, stream.str()));
+  res = std::fmod(tmpa, tmp);
+  stream << res;
+  return (proc.createOperand(_type, stream.str()));
 }
 
 #endif // OPERAND_HPP_INCLUDED
