@@ -26,7 +26,7 @@ public:
 
   void push(IOperand* nb);
   void pop();
-  void dump();
+  void dump() const;
   bool assert(IOperand* nb) const;
   void add();
   void sub();

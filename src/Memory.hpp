@@ -15,8 +15,8 @@ public:
 
   void push(IOperand* nb);
   void pop();
-  IOperand* top();
-  void dump();
+  IOperand* top() const;
+  void dump() const;
 private:
   std::deque<IOperand*> _stack;
 };

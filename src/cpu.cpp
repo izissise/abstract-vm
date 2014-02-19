@@ -31,7 +31,7 @@ void Cpu::pop()
   _ram.pop();
 }
 
-void Cpu::dump()
+void Cpu::dump() const
 {
   _ram.dump();
 }

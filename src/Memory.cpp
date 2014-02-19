@@ -19,7 +19,7 @@ void Memory::pop()
   _stack.pop_front();
 }
 
-IOperand* Memory::top()
+IOperand* Memory::top() const
 {
   IOperand* nb;
   if (_stack.empty())
@@ -28,8 +28,8 @@ IOperand* Memory::top()
   return (nb);
 }
 
-void Memory::dump()
+void Memory::dump() const
 {
-  for (std::deque<IOperand*>::iterator it = _stack.begin(); it != _stack.end(); it++)
+  for (std::deque<IOperand*>::const_iterator it = _stack.begin(); it != _stack.end(); it++)
     std::cout << (*it)->toString() << std::endl;
 }
