@@ -2,6 +2,8 @@
 #define MEMORY_H
 
 #include <deque>
+#include <iostream>
+#include <iterator>
 #include "Fault.hpp"
 #include "IOperator.hpp"
 
@@ -12,7 +14,8 @@ public:
   ~Memory();
 
   void push(IOperand* nb);
-  IOperand* pop();
+  void pop();
+  IOperand* top();
   void dump();
 private:
   std::deque<IOperand*> _stack;

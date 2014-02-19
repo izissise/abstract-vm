@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <stdint.h>
+#include "Memory.hpp"
 #include "IOperator.hpp"
 #include "EOperator.hpp"
 
@@ -24,7 +25,7 @@ public:
   IOperand* createOperand(eOperandType type, const std::string& value);
 
   void push(IOperand* nb);
-  IOperand* pop();
+  void pop();
   void dump();
   bool assert(IOperand* nb) const;
   void add();
@@ -37,6 +38,7 @@ public:
 
 private:
   static Cpu _instance;
+  Memory _ram;
   std::map<eOperandType, IOperand* (Cpu::*)(const std::string&)> _typemap;
 
 private:
