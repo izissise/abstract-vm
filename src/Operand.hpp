@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <string>
 #include <sstream>
-#include <cmath>
+#include <math.h>
 #include "cpu.hpp"
 #include "EOperator.hpp"
 #include "IOperator.hpp"
@@ -181,7 +181,7 @@ IOperand* Operand<T>::operator%(const IOperand &rhs) const //throw an exception 
   stream.str(rhs.toString());
   stream >> tmp;
   stream.clear();
-  res = std::fmod(tmpa, tmp);
+  res = fmod(tmpa, tmp);
   stream << res;
   return (proc.createOperand(_type, stream.str()));
 }
