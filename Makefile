@@ -12,6 +12,7 @@ SRC		=	main.cpp \
 			Operand.cpp \
 			Fault.cpp \
 			cpu.cpp \
+			Chipset.cpp \
 			Memory.cpp
 
 CC		=	g++

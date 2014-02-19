@@ -181,10 +181,9 @@ IOperand* Operand<T>::operator%(const IOperand &rhs) const //throw an exception 
   stream.str(rhs.toString());
   stream >> tmp;
   stream.clear();
-  res = fmod(tmpa, tmp);
+  res = 0;//fmod(tmpa, tmp);
   stream << res;
   return (proc.createOperand(_type, stream.str()));
 }
 
 #endif // OPERAND_HPP_INCLUDED
-

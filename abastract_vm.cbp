@@ -39,6 +39,8 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Makefile" />
+		<Unit filename="src/Chipset.cpp" />
+		<Unit filename="src/Chipset.hpp" />
 		<Unit filename="src/EOperator.hpp">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
