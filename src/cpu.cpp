@@ -36,7 +36,7 @@ void Cpu::dump()
 {
 }
 
-bool Cpu::assert(IOperand* nb)
+bool Cpu::assert(IOperand* nb) const
 {
   return (true);
 }
@@ -67,12 +67,12 @@ void Cpu::mod()
 
 }
 
-void Cpu::print()
+void Cpu::print() const
 {
 
 }
 
-void Cpu::exit()
+void Cpu::exit() const
 {
 
 }
