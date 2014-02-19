@@ -16,8 +16,8 @@ public:
   virtual ~Operand();
 
   virtual const std::string& toString() const;
-  virtual int getPrecision();
-  virtual eOperandType getType();
+  virtual int getPrecision() const;
+  virtual eOperandType getType() const;
 
   virtual IOperand* operator+(const IOperand &rhs) const; // Somme
   virtual IOperand* operator-(const IOperand &rhs) const; // Difference
@@ -49,13 +49,13 @@ const std::string& Operand<T>::toString() const
 }
 
 template<typename T>
-int Operand<T>::getPrecision()
+int Operand<T>::getPrecision() const
 {
   return (_type);
 }
 
 template<typename T>
-eOperandType Operand<T>::getType()
+eOperandType Operand<T>::getType() const
 {
   return (_type);
 }
@@ -70,7 +70,7 @@ IOperand* Operand<T>::operator+(const IOperand &rhs) const
 
   if (getPrecision() < rhs.getPrecision())
     {
-      npreci = Cpu::createOperand(rhs.getType, toString());
+      npreci = Cpu::createOperand(rhs.getType(), toString());
       return ((*npreci) + rhs);
     }
   tmpa << stream;
@@ -92,7 +92,7 @@ IOperand* Operand<T>::operator-(const IOperand &rhs) const
 
   if (getPrecision() < rhs.getPrecision())
     {
-      npreci = Cpu::createOperand(rhs.getType, toString());
+      npreci = Cpu::createOperand(rhs.getType(), toString());
       return ((*npreci) - rhs);
     }
   tmpa << stream;
@@ -114,7 +114,7 @@ IOperand* Operand<T>::operator*(const IOperand &rhs) const
 
   if (getPrecision() < rhs.getPrecision())
     {
-      npreci = Cpu::createOperand(rhs.getType, toString());
+      npreci = Cpu::createOperand(rhs.getType(), toString());
       return ((*npreci) * rhs);
     }
   tmpa << stream;
@@ -137,7 +137,7 @@ IOperand* Operand<T>::operator/(const IOperand &rhs) const //throw an exception 
 
   if (getPrecision() < rhs.getPrecision())
     {
-      npreci = Cpu::createOperand(rhs.getType, toString());
+      npreci = Cpu::createOperand(rhs.getType(), toString());
       return ((*npreci) / rhs);
     }
   tmpa << stream;
@@ -160,7 +160,7 @@ IOperand* Operand<T>::operator%(const IOperand &rhs) const //throw an exception 
 
   if (getPrecision() < rhs.getPrecision())
     {
-      npreci = Cpu::createOperand(rhs.getType, toString());
+      npreci = Cpu::createOperand(rhs.getType(), toString());
       return ((*npreci) % rhs);
     }
   tmpa << stream;

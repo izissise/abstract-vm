@@ -33,8 +33,8 @@ IOperand* Cpu::createInt16(const std::string& value)
 
 IOperand* Cpu::createInt32(const std::string& value)
 {
-  return(new Int32(value, ::Int32)):
-  }
+  return(new Int32(value, ::Int32));
+}
 
 IOperand* Cpu::createFloat(const std::string& value)
 {
@@ -48,7 +48,7 @@ IOperand* Cpu::createDouble(const std::string& value)
 
 IOperand* Cpu::createOperand(eOperandType type, const std::string& value)
 {
-  return(_typemap[type](value));
+  return((this->*(_typemap.at(type)))(value));
 }
 
 
