@@ -23,6 +23,19 @@ public:
   static Cpu& Instance();
 
   IOperand* createOperand(eOperandType type, const std::string& value);
+
+  void push(IOperand* nb);
+  IOperand* pop();
+  void dump();
+  bool assert(IOperand* nb);
+  void add();
+  void sub();
+  void mul();
+  void div();
+  void mod();
+  void print();
+  void exit();
+
 private:
   static Cpu _instance;
   std::map<eOperandType, IOperand* (Cpu::*)(const std::string&)> _typemap;

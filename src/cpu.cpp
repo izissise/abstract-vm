@@ -21,6 +21,62 @@ Cpu& Cpu::Instance()
   return (_instance);
 }
 
+void Cpu::push(IOperand* nb)
+{
+  //push on memory
+}
+
+IOperand* Cpu::pop()
+{
+  //pop from memory
+  return (NULL);
+}
+
+void Cpu::dump()
+{
+}
+
+bool Cpu::assert(IOperand* nb)
+{
+  return (true);
+}
+
+
+void Cpu::add()
+{
+
+}
+
+void Cpu::sub()
+{
+
+}
+
+void Cpu::mul()
+{
+
+}
+
+void Cpu::div()
+{
+
+}
+
+void Cpu::mod()
+{
+
+}
+
+void Cpu::print()
+{
+
+}
+
+void Cpu::exit()
+{
+
+}
+
 IOperand* Cpu::createInt8(const std::string& value)
 {
   return(new Int8(value, ::Int8));
@@ -50,5 +106,3 @@ IOperand* Cpu::createOperand(eOperandType type, const std::string& value)
 {
   return((this->*(_typemap.at(type)))(value));
 }
-
-
