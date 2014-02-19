@@ -11,7 +11,8 @@
 SRC		=	main.cpp \
 			Operand.cpp \
 			Fault.cpp \
-			cpu.cpp
+			cpu.cpp \
+			Memory.cpp
 
 CC		=	g++
 

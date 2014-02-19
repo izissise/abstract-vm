@@ -45,6 +45,8 @@
 		<Unit filename="src/Fault.cpp" />
 		<Unit filename="src/Fault.hpp" />
 		<Unit filename="src/IOperator.hpp" />
+		<Unit filename="src/Memory.cpp" />
+		<Unit filename="src/Memory.hpp" />
 		<Unit filename="src/Operand.cpp" />
 		<Unit filename="src/Operand.hpp" />
 		<Unit filename="src/cpu.cpp" />
