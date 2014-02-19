@@ -19,7 +19,6 @@ public:
   typedef Operand<float> Float;
   typedef Operand<double> Double;
 
-
   static Cpu& Instance();
 
   IOperand* createOperand(eOperandType type, const std::string& value);
@@ -27,14 +26,14 @@ public:
   void push(IOperand* nb);
   IOperand* pop();
   void dump();
-  bool assert(IOperand* nb);
+  bool assert(IOperand* nb) const;
   void add();
   void sub();
   void mul();
   void div();
   void mod();
-  void print();
-  void exit();
+  void print() const;
+  void exit() const;
 
 private:
   static Cpu _instance;
