@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <string>
 #include <sstream>
+#include <cmath>
 #include "cpu.hpp"
 #include "EOperator.hpp"
 #include "IOperator.hpp"
@@ -75,10 +76,10 @@ IOperand* Operand<T>::operator+(const IOperand &rhs) const
       npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) + rhs);
     }
-  tmpa << stream;
+  stream >> tmpa;
   stream.clear();
   stream.str(rhs.toString());
-  tmp << stream;
+  stream >> tmp;
   stream.clear();
   res = (tmpa + tmp);
   stream << res;
@@ -100,10 +101,10 @@ IOperand* Operand<T>::operator-(const IOperand &rhs) const
       npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) - rhs);
     }
-  tmpa << stream;
+  stream >> tmpa;
   stream.clear();
   stream.str(rhs.toString());
-  tmp << stream;
+  stream >> tmp;
   stream.clear();
   res = (tmpa - tmp);
   stream << res;
@@ -125,10 +126,10 @@ IOperand* Operand<T>::operator*(const IOperand &rhs) const
       npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) * rhs);
     }
-  tmpa << stream;
+  stream >> tmpa;
   stream.clear();
   stream.str(rhs.toString());
-  tmp << stream;
+  stream >> tmp;
   stream.clear();
   res = (tmpa * tmp);
   stream << res;
@@ -150,10 +151,10 @@ IOperand* Operand<T>::operator/(const IOperand &rhs) const //throw an exception 
       npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) / rhs);
     }
-  tmpa << stream;
+  stream >> tmpa;
   stream.clear();
   stream.str(rhs.toString());
-  tmp << stream;
+  stream >> tmp;
   stream.clear();
   res = (tmpa / tmp);
   stream << res;
@@ -175,12 +176,12 @@ IOperand* Operand<T>::operator%(const IOperand &rhs) const //throw an exception 
       npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) % rhs);
     }
-  tmpa << stream;
+  stream >> tmpa;
   stream.clear();
   stream.str(rhs.toString());
-  tmp << stream;
+  stream >> tmp;
   stream.clear();
-  res = (tmpa % tmp);
+  res = std::fmod(tmpa, tmp);
   stream << res;
   return (proc.createOperand(_type, stream.str()));
 }
