@@ -107,8 +107,8 @@ void Cpu::mod()
 
 void Cpu::print() const
 {
-  //todo
-  std::cout << "Not implemented" << std::endl;
+	//check Int8 else throw a fault
+  std::cout << (_ram.top())->toString() << std::endl;
 }
 
 void Cpu::exit() const
