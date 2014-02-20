@@ -38,12 +38,21 @@ void Cpu::dump() const
 
 bool Cpu::assert(IOperand* nb) const
 {
-//todo assert
-  if (nb == NULL)
-    return (true);
+  IOperand* tnb = _ram.top();
+
+  if (nb->getType() == tnb->getType())
+    {
+      double tmpa;
+      double tmpb;
+      std::stringstream a(nb->toString());
+      std::stringstream b(tnb->toString());
+      a >> tmpa;
+      b >> tmpb;
+      if (tmpa == tmpb)
+        return (true);
+    }
   return (false);
 }
-
 
 void Cpu::add()
 {
@@ -107,7 +116,7 @@ void Cpu::mod()
 
 void Cpu::print() const
 {
-	//check Int8 else throw a fault
+  //check Int8 else throw a fault
   std::cout << (_ram.top())->toString() << std::endl;
 }
 
