@@ -12,8 +12,7 @@ Chipset::Chipset(const std::string &filename)
 	nFault("Error openning '" + filename + "'\n");
   while(std::getline(ifs, content))
     {
-      if (content.find_first_not_of(" ") + 1 > content.size() &&
-	  content.substr(content.find_first_not_of(" ") + 1, 1) != ";")
+      if (content.substr(content.find_first_not_of(" "), 1) != ";")
 	parse(content);
     }
 	//ctor
@@ -28,9 +27,8 @@ Chipset::Chipset()
   setOperators();
   while(std::getline(std::cin, content) && content != ";;")
     {
-      if (content.find_first_not_of(" ") + 1 > content.size() &&
-	  content.substr(content.find_first_not_of(" ") + 1, 1) == ";")
-	parse(content);
+      if (content.substr(content.find_first_not_of(" "), 1) != ";")
+	  parse(content);
     }
 	//ctor
 }
@@ -65,10 +63,17 @@ void	Chipset::setOperand()
 
 IOperand	*Chipset::getOperand(std::string str)
 {
-  return (_currentCpu.createOperand(_typemap[str.substr(str.find(" ") + 1,
-							str.find("(") - str.find(" ") + 1)],
-				    str.substr(str.find("(")+ 1 ,
-					       str.find(")"))));
+  eOperandType typeOperand;
+  std::string value;
+
+  try {
+    typeOperand = _typemap.at(str.substr(str.find(" ") + 1, str.find("(") - (str.find(" ") + 1)));
+  }
+  catch (std::out_of_range oor) {
+    nFault("Error type '" + str.substr(str.find(" ") + 1, str.find("(") - (str.find(" ") + 1)) + "' doesn't exist\n");
+  }
+  value = str.substr(str.find("(")+ 1, str.find(")") -1 - str.find("("));
+  return (_currentCpu.createOperand(typeOperand, value));
 }
 
 void	Chipset::parse(std::string str)
@@ -81,14 +86,14 @@ void	Chipset::parse(std::string str)
       ptr = _operators.at(str.substr(0, str.find(" ")));
       (_currentCpu.*ptr)();
     }
-  catch(std::exception e)
+  catch(std::out_of_range e)
     {
       try
 	{
 	  ptr2 = _operatorsConst.at(str.substr(0, str.find(" ")));
 	  (_currentCpu.*ptr2)();
 	}
-      catch(std::exception e)
+      catch(std::out_of_range e)
 	{
 	  if (str.substr(0, str.find(" ")) == "push")
 	    _currentCpu.push(getOperand(str));

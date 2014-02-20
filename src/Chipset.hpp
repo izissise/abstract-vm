@@ -2,6 +2,7 @@
 #define CHIPSET_H
 
 #include <map>
+#include <stdexcept>
 #include <string>
 #include <fstream>
 #include <iostream>
