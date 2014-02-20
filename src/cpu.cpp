@@ -116,8 +116,14 @@ void Cpu::mod()
 
 void Cpu::print() const
 {
-  //check Int8 else throw a fault
-  std::cout << (_ram.top())->toString() << std::endl;
+  IOperand* nb = _ram.top();
+  std::stringstream stream(nb->toString());
+  int tmpnb;
+
+  if (nb->getType() != ::Int8)
+    throw nFault("Print: Not a Int8");
+  stream >> tmpnb;
+  std::cout << static_cast<char>(tmpnb) << std::endl;
 }
 
 void Cpu::exit() const
