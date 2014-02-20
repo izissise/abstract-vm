@@ -2,6 +2,7 @@
 #define CHIPSET_H
 
 #include <map>
+#include <vector>
 #include <stdexcept>
 #include <string>
 #include <fstream>
@@ -26,6 +27,8 @@ private:
   void		setOperand();
   IOperand	*getOperand(std::string str);
   void		parse(std::string str);
+  void		parseIsOperator(std::string str);
+  void		parseIsType(std::string str);
 };
 
 #endif // CHIPSET_H
