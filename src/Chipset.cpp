@@ -47,13 +47,14 @@ Chipset::Chipset()
   : _currentCpu(Cpu::Instance())
 {
   std::string line;
+  std::string tmp;
   std::vector<std::string> content;
   unsigned int i = 0;
   size_t find;
 
   setOperand();
   setOperators();
-  while(std::getline(std::cin, line) && line != ";;")
+  while(std::getline(std::cin, line) && (tmp = line) != ";;")
     {
       find = line.find("  ");
       while (std::string::npos != find)
@@ -70,8 +71,9 @@ Chipset::Chipset()
           content.push_back(line);
           i++;
         }
-
     }
+  if (tmp != ";;")
+    throw nFault("Error there is no ;; at end of file\n");
   i = 0;
   while (i < content.size() && _currentCpu.getExit() == false)
     {
