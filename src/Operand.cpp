@@ -58,6 +58,8 @@ IOperand* Operand<T>::operator+(const IOperand &rhs) const
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
+ /* if (((tmp > 0) && (tmpa > INT_MAX - tmp)) || ((tmp < 0) && (tmpa < INT_MIN - tmp)))
+    throw nFault("Overflow/Underflow");*/
   res = (tmpa + tmp);
   stream << res;
   return (proc.createOperand(_type, stream.str()));

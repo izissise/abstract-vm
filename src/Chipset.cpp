@@ -13,7 +13,7 @@ Chipset::Chipset(const std::string &filename)
   setOperand();
   setOperators();
   if (!ifs.is_open())
-    nFault("Error openning '" + filename + "'\n");
+    throw nFault("Error openning '" + filename + "'\n");
   while(std::getline(ifs, line))
     {
       find = line.find("  ");
@@ -40,7 +40,6 @@ Chipset::Chipset(const std::string &filename)
     }
   if (_currentCpu.getExit() == false)
     throw nFault("Error there is no 'exit'\n");
-  //ctor
 }
 
 Chipset::Chipset()
@@ -80,12 +79,10 @@ Chipset::Chipset()
     }
   if (_currentCpu.getExit() == false)
     throw nFault("Error there is no 'exit'\n");
-  //ctor
 }
 
 Chipset::~Chipset()
 {
-  //dtor
 }
 
 void	Chipset::setOperators()
