@@ -9,9 +9,9 @@ int main(int argc, char **argv)
   try
     {
       if (argc == 1)
-	Chipset();
+        Chipset();
       else
-	Chipset(std::string(argv[1]));
+        Chipset(std::string(argv[1]));
     }
   catch (Fault& e)
     {
