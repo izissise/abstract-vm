@@ -23,16 +23,16 @@ Chipset::Chipset(const std::string &filename)
     {
       find = line.find("  ");
       while (std::string::npos != find)
-	{
-	  line.erase(find, 1);
-	  find = line.find("  ");
-	}
+        {
+          line.erase(find, 1);
+          find = line.find("  ");
+        }
       line.erase(0, (line.find_first_not_of(" ")));
       if (line.substr(line.find_first_not_of(" "), 1) != ";")
         {
-	  find = line.find(";");
-	  if (std::string::npos != find)
-	    line.erase(find, line.size() - find);
+          find = line.find(";");
+          if (std::string::npos != find)
+            line.erase(find, line.size() - find);
           content.push_back(line);
           i++;
         }
@@ -62,17 +62,17 @@ Chipset::Chipset()
     {
       find = line.find("  ");
       while (std::string::npos != find)
-	{
-	  line.erase(find, 1);
-	  find = line.find("  ");
-	}
+        {
+          line.erase(find, 1);
+          find = line.find("  ");
+        }
       line.erase(0, (line.find_first_not_of(" ")));
       if (line.substr(line.find_first_not_of(" "), 1) != ";")
         {
-	  find = line.find(";");
-	  if (std::string::npos != find)
-	    line.erase(find, line.size() - find);
-	  content.push_back(line);
+          find = line.find(";");
+          if (std::string::npos != find)
+            line.erase(find, line.size() - find);
+          content.push_back(line);
           i++;
         }
 
@@ -101,9 +101,9 @@ void	Chipset::setOperators()
   _operators["mul"] = &Cpu::mul;
   _operators["div"] = &Cpu::div;
   _operators["mod"] = &Cpu::mod;
+  _operators["exit"] = &Cpu::exit;
   _operatorsConst["dump"] = &Cpu::dump;
   _operatorsConst["print"] = &Cpu::print;
-  _operatorsConst["exit"] = &Cpu::exit;
 }
 
 void	Chipset::setOperand()

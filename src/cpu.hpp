@@ -34,7 +34,9 @@ public:
   void div();
   void mod();
   void print() const;
-  void exit() const;
+  void exit();
+
+  bool getExit() const {return _exited;};
 
 private:
   static Cpu _instance;
@@ -46,6 +48,8 @@ private:
   Cpu(const Cpu&) {};
   Cpu();
   ~Cpu();
+
+  bool _exited;
 
   IOperand* createInt8(const std::string& value);
   IOperand* createInt16(const std::string& value);

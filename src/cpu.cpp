@@ -10,6 +10,7 @@ Cpu::Cpu()
   _typemap[::Int32] = &Cpu::createInt32;
   _typemap[::Float] = &Cpu::createFloat;
   _typemap[::Double] = &Cpu::createDouble;
+  _exited = false;
 }
 
 Cpu::~Cpu()
@@ -126,9 +127,9 @@ void Cpu::print() const
   std::cout << static_cast<char>(tmpnb) << std::endl;
 }
 
-void Cpu::exit() const
+void Cpu::exit()
 {
-//exit ?
+  _exited = true;
 }
 
 IOperand* Cpu::createInt8(const std::string& value)
