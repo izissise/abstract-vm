@@ -19,7 +19,7 @@ CC		=	g++
 
 RM		=	rm -f
 
-NAME		=	abstract_vm
+NAME		=	avm
 
 OBJDIR		=	obj/
 SRCDIR		=	src/
