@@ -3,7 +3,7 @@
 
 /*
   TODO:
-  gerer  'push; int(8)'
+  exit pas a la fin
 */
 
 Chipset::Chipset(const std::string &filename)
@@ -27,8 +27,12 @@ Chipset::Chipset(const std::string &filename)
 	  line.erase(find, 1);
 	  find = line.find("  ");
 	}
+      line.erase(0, (line.find_first_not_of(" ")));
       if (line.substr(line.find_first_not_of(" "), 1) != ";")
         {
+	  find = line.find(";");
+	  if (std::string::npos != find)
+	    line.erase(find, line.size() - find);
           content.push_back(line);
           i++;
         }
@@ -56,15 +60,18 @@ Chipset::Chipset()
   setOperators();
   while(std::getline(std::cin, line) && line != ";;")
     {
+      find = line.find("  ");
+      while (std::string::npos != find)
+	{
+	  line.erase(find, 1);
+	  find = line.find("  ");
+	}
+      line.erase(0, (line.find_first_not_of(" ")));
       if (line.substr(line.find_first_not_of(" "), 1) != ";")
         {
-	  find = line.find("  ");
-	  while (std::string::npos != find)
-	    {
-	      line.erase(find, 1);
-	      find = line.find("  ");
-	    }
-	  line.erase(0, (line.find_first_not_of(" ")));
+	  find = line.find(";");
+	  if (std::string::npos != find)
+	    line.erase(find, line.size() - find);
 	  content.push_back(line);
           i++;
         }
