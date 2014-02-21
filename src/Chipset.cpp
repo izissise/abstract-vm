@@ -3,9 +3,7 @@
 
 /*
   TODO:
-  -parseur qui zap les espace
-  -parseIsOperator
-  -parseIsType
+  gerer  'push; int(8)'
 */
 
 Chipset::Chipset(const std::string &filename)
@@ -15,6 +13,7 @@ Chipset::Chipset(const std::string &filename)
   std::vector<std::string> content;
   std::ifstream ifs(filename.c_str());
   unsigned int i = 0;
+  size_t find;
 
   setOperand();
   setOperators();
@@ -22,6 +21,12 @@ Chipset::Chipset(const std::string &filename)
     nFault("Error openning '" + filename + "'\n");
   while(std::getline(ifs, line))
     {
+      find = line.find("  ");
+      while (std::string::npos != find)
+	{
+	  line.erase(find, 1);
+	  find = line.find("  ");
+	}
       if (line.substr(line.find_first_not_of(" "), 1) != ";")
         {
           content.push_back(line);
@@ -45,6 +50,7 @@ Chipset::Chipset()
   std::string line;
   std::vector<std::string> content;
   unsigned int i = 0;
+  size_t find;
 
   setOperand();
   setOperators();
@@ -52,7 +58,14 @@ Chipset::Chipset()
     {
       if (line.substr(line.find_first_not_of(" "), 1) != ";")
         {
-          content.push_back(line);
+	  find = line.find("  ");
+	  while (std::string::npos != find)
+	    {
+	      line.erase(find, 1);
+	      find = line.find("  ");
+	    }
+	  line.erase(0, (line.find_first_not_of(" ")));
+	  content.push_back(line);
           i++;
         }
 
@@ -115,8 +128,6 @@ void	Chipset::parse(std::string str)
   void (Cpu::*ptr)(void);
   void (Cpu::*ptr2)(void) const;
 
-  parseIsOperator(str);
-  parseIsType(str);
   if (str.substr(0, str.find(" ")) == "push")
     _currentCpu.push(getOperand(str));
   else if (str.substr(0, str.find(" ")) == "assert")
@@ -141,14 +152,4 @@ void	Chipset::parse(std::string str)
             }
         }
     }
-}
-
-void	Chipset::parseIsOperator(std::string str)
-{
-  str = "toto";
-}
-
-void	Chipset::parseIsType(std::string str)
-{
-  str = "titi";
 }
