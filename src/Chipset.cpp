@@ -1,19 +1,40 @@
+#include  <cstdlib>
 #include "Chipset.hpp"
+
+/*
+  TODO:
+  -parseur qui zap les espace
+  -parseIsOperator
+  -parseIsType
+*/
 
 Chipset::Chipset(const std::string &filename)
   : _currentCpu(Cpu::Instance())
 {
-  std::string content;
+  std::string line;
+  std::vector<std::string> content;
   std::ifstream ifs(filename.c_str());
+  unsigned int i = 0;
 
   setOperand();
   setOperators();
   if (!ifs.is_open())
 	nFault("Error openning '" + filename + "'\n");
-  while(std::getline(ifs, content))
+  while(std::getline(ifs, line))
     {
-      if (content.substr(content.find_first_not_of(" "), 1) != ";")
-	parse(content);
+      if (line.substr(line.find_first_not_of(" "), 1) != ";")
+	{
+	  content[i] = line;
+	  i++;
+	}
+    }
+  if (content[i-1] != std::string("exit"))
+    throw nFault("Error there is no 'exit' at the end of file\n");
+  i = 0;
+  while (i < content.size())
+    {
+      parse(content[i]);
+      i++;
     }
 	//ctor
 }
@@ -21,14 +42,28 @@ Chipset::Chipset(const std::string &filename)
 Chipset::Chipset()
   : _currentCpu(Cpu::Instance())
 {
-  std::string content;
+  std::string line;
+  std::vector<std::string> content;
+  unsigned int i = 0;
 
   setOperand();
   setOperators();
-  while(std::getline(std::cin, content) && content != ";;")
+  while(std::getline(std::cin, line) && line != ";;")
     {
-      if (content.substr(content.find_first_not_of(" "), 1) != ";")
-	  parse(content);
+      if (line.substr(line.find_first_not_of(" "), 1) != ";")
+	{
+	  content.push_back(line);
+	  i++;
+	}
+
+    }
+  if (content[i-1] != std::string("exit"))
+    throw nFault("Error there is no 'exit' at the end of file\n");
+  i = 0;
+  while (i < content.size())
+    {
+      parse(content[i]);
+      i++;
     }
 	//ctor
 }
@@ -46,7 +81,6 @@ void	Chipset::setOperators()
   _operators[std::string("mul")] = &Cpu::mul;
   _operators[std::string("div")] = &Cpu::div;
   _operators[std::string("mod")] = &Cpu::mod;
-
   _operatorsConst[std::string("dump")] = &Cpu::dump;
   _operatorsConst[std::string("print")] = &Cpu::print;
   _operatorsConst[std::string("exit")] = &Cpu::exit;
@@ -69,8 +103,8 @@ IOperand	*Chipset::getOperand(std::string str)
   try {
     typeOperand = _typemap.at(str.substr(str.find(" ") + 1, str.find("(") - (str.find(" ") + 1)));
   }
-  catch (std::out_of_range oor) {
-    nFault("Error type '" + str.substr(str.find(" ") + 1, str.find("(") - (str.find(" ") + 1)) + "' doesn't exist\n");
+  catch (std::out_of_range&  e) {
+    throw nFault("Error type '" + str.substr(str.find(" ") + 1, str.find("(") - (str.find(" ") + 1)) + "' doesn't exist\n");
   }
   value = str.substr(str.find("(")+ 1, str.find(")") -1 - str.find("("));
   return (_currentCpu.createOperand(typeOperand, value));
@@ -81,27 +115,40 @@ void	Chipset::parse(std::string str)
   void (Cpu::*ptr)(void);
   void (Cpu::*ptr2)(void) const;
 
-  try
-    {
-      ptr = _operators.at(str.substr(0, str.find(" ")));
-      (_currentCpu.*ptr)();
-    }
-  catch(std::out_of_range e)
+  parseIsOperator(str);
+  parseIsType(str);
+  if (str.substr(0, str.find(" ")) == "push")
+    _currentCpu.push(getOperand(str));
+  else if (str.substr(0, str.find(" ")) == "assert")
+    _currentCpu.assert(getOperand(str));
+  else
     {
       try
 	{
-	  ptr2 = _operatorsConst.at(str.substr(0, str.find(" ")));
-	  (_currentCpu.*ptr2)();
+	  ptr = _operators.at(str.substr(0, str.find(" ")));
+	  (_currentCpu.*ptr)();
 	}
       catch(std::out_of_range e)
 	{
-	  if (str.substr(0, str.find(" ")) == "push")
-	    _currentCpu.push(getOperand(str));
-	  else if (str.substr(0, str.find(" ")) == "assert")
-	    _currentCpu.assert(getOperand(str));
-	  else
-	    nFault("Error operator '" + str.substr(0, str.find(" ")) + "' doesn't exist\n");
+	  try
+	    {
+	      ptr2 = _operatorsConst.at(str.substr(0, str.find(" ")));
+	      (_currentCpu.*ptr2)();
+	    }
+	  catch(std::out_of_range e)
+	    {
+	      throw nFault("Error operator '" + str.substr(0, str.find(" ")) + "' doesn't exist\n");
+	    }
 	}
     }
+}
 
+void	Chipset::parseIsOperator(std::string str)
+{
+  str = "toto";
+}
+
+void	Chipset::parseIsType(std::string str)
+{
+  str = "titi";
 }
