@@ -24,7 +24,7 @@ Chipset::Chipset(const std::string &filename)
     {
       if (line.substr(line.find_first_not_of(" "), 1) != ";")
         {
-          content[i] = line;
+          content.push_back(line);
           i++;
         }
     }
