@@ -27,6 +27,8 @@ public:
   virtual IOperand* operator%(const IOperand &rhs) const; // Modulo
 
 private:
+  T convertToRType(std::string value) const;
+
   std::string _value;
   eOperandType _type;
 };
