@@ -19,16 +19,16 @@ Chipset::Chipset(const std::string &filename)
   setOperand();
   setOperators();
   if (!ifs.is_open())
-	nFault("Error openning '" + filename + "'\n");
+    nFault("Error openning '" + filename + "'\n");
   while(std::getline(ifs, line))
     {
       if (line.substr(line.find_first_not_of(" "), 1) != ";")
-	{
-	  content[i] = line;
-	  i++;
-	}
+        {
+          content[i] = line;
+          i++;
+        }
     }
-  if (content[i-1] != std::string("exit"))
+  if (content[i - 1] != std::string("exit"))
     throw nFault("Error there is no 'exit' at the end of file\n");
   i = 0;
   while (i < content.size())
@@ -36,7 +36,7 @@ Chipset::Chipset(const std::string &filename)
       parse(content[i]);
       i++;
     }
-	//ctor
+  //ctor
 }
 
 Chipset::Chipset()
@@ -51,13 +51,13 @@ Chipset::Chipset()
   while(std::getline(std::cin, line) && line != ";;")
     {
       if (line.substr(line.find_first_not_of(" "), 1) != ";")
-	{
-	  content.push_back(line);
-	  i++;
-	}
+        {
+          content.push_back(line);
+          i++;
+        }
 
     }
-  if (content[i-1] != std::string("exit"))
+  if (content[i - 1] != std::string("exit"))
     throw nFault("Error there is no 'exit' at the end of file\n");
   i = 0;
   while (i < content.size())
@@ -65,34 +65,34 @@ Chipset::Chipset()
       parse(content[i]);
       i++;
     }
-	//ctor
+  //ctor
 }
 
 Chipset::~Chipset()
 {
-	//dtor
+  //dtor
 }
 
 void	Chipset::setOperators()
 {
-  _operators[std::string("pop")] = &Cpu::pop;
-  _operators[std::string("add")] = &Cpu::add;
-  _operators[std::string("sub")] = &Cpu::sub;
-  _operators[std::string("mul")] = &Cpu::mul;
-  _operators[std::string("div")] = &Cpu::div;
-  _operators[std::string("mod")] = &Cpu::mod;
-  _operatorsConst[std::string("dump")] = &Cpu::dump;
-  _operatorsConst[std::string("print")] = &Cpu::print;
-  _operatorsConst[std::string("exit")] = &Cpu::exit;
+  _operators["pop"] = &Cpu::pop;
+  _operators["add"] = &Cpu::add;
+  _operators["sub"] = &Cpu::sub;
+  _operators["mul"] = &Cpu::mul;
+  _operators["div"] = &Cpu::div;
+  _operators["mod"] = &Cpu::mod;
+  _operatorsConst["dump"] = &Cpu::dump;
+  _operatorsConst["print"] = &Cpu::print;
+  _operatorsConst["exit"] = &Cpu::exit;
 }
 
 void	Chipset::setOperand()
 {
-  _typemap[std::string("Int8")] = ::Int8;
-  _typemap[std::string("Int16")] = ::Int16;
-  _typemap[std::string("Int32")] = ::Int32;
-  _typemap[std::string("Float")] = ::Float;
-  _typemap[std::string("Double")] = ::Double;
+  _typemap["Int8"] = ::Int8;
+  _typemap["Int16"] = ::Int16;
+  _typemap["Int32"] = ::Int32;
+  _typemap["Float"] = ::Float;
+  _typemap["Double"] = ::Double;
 }
 
 IOperand	*Chipset::getOperand(std::string str)
@@ -101,12 +101,12 @@ IOperand	*Chipset::getOperand(std::string str)
   std::string value;
 
   try {
-    typeOperand = _typemap.at(str.substr(str.find(" ") + 1, str.find("(") - (str.find(" ") + 1)));
-  }
+      typeOperand = _typemap.at(str.substr(str.find(" ") + 1, str.find("(") - (str.find(" ") + 1)));
+    }
   catch (std::out_of_range&  e) {
-    throw nFault("Error type '" + str.substr(str.find(" ") + 1, str.find("(") - (str.find(" ") + 1)) + "' doesn't exist\n");
-  }
-  value = str.substr(str.find("(")+ 1, str.find(")") -1 - str.find("("));
+      throw nFault("Error type '" + str.substr(str.find(" ") + 1, str.find("(") - (str.find(" ") + 1)) + "' doesn't exist\n");
+    }
+  value = str.substr(str.find("(") + 1, str.find(")") - 1 - str.find("("));
   return (_currentCpu.createOperand(typeOperand, value));
 }
 
@@ -124,22 +124,22 @@ void	Chipset::parse(std::string str)
   else
     {
       try
-	{
-	  ptr = _operators.at(str.substr(0, str.find(" ")));
-	  (_currentCpu.*ptr)();
-	}
+        {
+          ptr = _operators.at(str.substr(0, str.find(" ")));
+          (_currentCpu.*ptr)();
+        }
       catch(std::out_of_range e)
-	{
-	  try
-	    {
-	      ptr2 = _operatorsConst.at(str.substr(0, str.find(" ")));
-	      (_currentCpu.*ptr2)();
-	    }
-	  catch(std::out_of_range e)
-	    {
-	      throw nFault("Error operator '" + str.substr(0, str.find(" ")) + "' doesn't exist\n");
-	    }
-	}
+        {
+          try
+            {
+              ptr2 = _operatorsConst.at(str.substr(0, str.find(" ")));
+              (_currentCpu.*ptr2)();
+            }
+          catch(std::out_of_range e)
+            {
+              throw nFault("Error operator '" + str.substr(0, str.find(" ")) + "' doesn't exist\n");
+            }
+        }
     }
 }
 

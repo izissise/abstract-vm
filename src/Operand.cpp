@@ -106,7 +106,7 @@ IOperand* Operand<T>::operator*(const IOperand &rhs) const
 }
 
 template<typename T>
-IOperand* Operand<T>::operator/(const IOperand &rhs) const //throw an exception in case of float double
+IOperand* Operand<T>::operator/(const IOperand &rhs) const
 {
   std::stringstream stream(toString());
   IOperand* npreci;

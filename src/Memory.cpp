@@ -16,6 +16,8 @@ void Memory::push(IOperand* nb)
 void Memory::pop()
 {
   top();
+  if (_stack.empty())
+    nFault("Stack is empty can't pop");
   _stack.pop_front();
 }
 
@@ -23,7 +25,7 @@ IOperand* Memory::top() const
 {
   IOperand* nb;
   if (_stack.empty())
-    nFault("Regarder message a mettre un truc a propos du stack vide et de tenter de pop");
+    nFault("Stack is empty no top value");
   nb = _stack.front();
   return (nb);
 }

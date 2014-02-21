@@ -36,7 +36,7 @@ void Cpu::dump() const
   _ram.dump();
 }
 
-bool Cpu::assert(IOperand* nb) const
+void Cpu::assert(IOperand* nb) const
 {
   IOperand* tnb = _ram.top();
 
@@ -49,9 +49,9 @@ bool Cpu::assert(IOperand* nb) const
       a >> tmpa;
       b >> tmpb;
       if (tmpa == tmpb)
-        return (true);
+        return;
     }
-  return (false);
+  throw nFault("Assert failed");
 }
 
 void Cpu::add()
