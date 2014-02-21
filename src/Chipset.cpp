@@ -88,11 +88,11 @@ void	Chipset::setOperators()
 
 void	Chipset::setOperand()
 {
-  _typemap["Int8"] = ::Int8;
-  _typemap["Int16"] = ::Int16;
-  _typemap["Int32"] = ::Int32;
-  _typemap["Float"] = ::Float;
-  _typemap["Double"] = ::Double;
+  _typemap["int8"] = ::Int8;
+  _typemap["int16"] = ::Int16;
+  _typemap["int32"] = ::Int32;
+  _typemap["float"] = ::Float;
+  _typemap["double"] = ::Double;
 }
 
 IOperand	*Chipset::getOperand(std::string str)
