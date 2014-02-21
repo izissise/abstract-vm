@@ -31,9 +31,20 @@ eOperandType Operand<T>::getType() const
 }
 
 template<typename T>
+T Operand<T>::convertToRType(std::string value) const
+{
+  std::stringstream stream(value);
+  T ret;
+
+  if (!(stream >> ret))
+    throw nFault("Can't convert " + value + " to type.");
+  return (ret);
+}
+
+template<typename T>
 IOperand* Operand<T>::operator+(const IOperand &rhs) const
 {
-  std::stringstream stream(toString());
+  std::stringstream stream;
   IOperand* npreci;
   Cpu& proc = Cpu::Instance();
   T tmpa;
@@ -45,11 +56,8 @@ IOperand* Operand<T>::operator+(const IOperand &rhs) const
       npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) + rhs);
     }
-  stream >> tmpa;
-  stream.clear();
-  stream.str(rhs.toString());
-  stream >> tmp;
-  stream.clear();
+  tmpa = convertToRType(toString());
+  tmp = convertToRType(rhs.toString());
   res = (tmpa + tmp);
   stream << res;
   return (proc.createOperand(_type, stream.str()));
@@ -70,11 +78,8 @@ IOperand* Operand<T>::operator-(const IOperand &rhs) const
       npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) - rhs);
     }
-  stream >> tmpa;
-  stream.clear();
-  stream.str(rhs.toString());
-  stream >> tmp;
-  stream.clear();
+  tmpa = convertToRType(toString());
+  tmp = convertToRType(rhs.toString());
   res = (tmpa - tmp);
   stream << res;
   return (proc.createOperand(_type, stream.str()));
@@ -95,11 +100,8 @@ IOperand* Operand<T>::operator*(const IOperand &rhs) const
       npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) * rhs);
     }
-  stream >> tmpa;
-  stream.clear();
-  stream.str(rhs.toString());
-  stream >> tmp;
-  stream.clear();
+  tmpa = convertToRType(toString());
+  tmp = convertToRType(rhs.toString());
   res = (tmpa * tmp);
   stream << res;
   return (proc.createOperand(_type, stream.str()));
@@ -120,11 +122,8 @@ IOperand* Operand<T>::operator/(const IOperand &rhs) const
       npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) / rhs);
     }
-  stream >> tmpa;
-  stream.clear();
-  stream.str(rhs.toString());
-  stream >> tmp;
-  stream.clear();
+  tmpa = convertToRType(toString());
+  tmp = convertToRType(rhs.toString());
   if (tmp == 0)
     throw nFault("Division by zero");
   res = (tmpa / tmp);
@@ -147,11 +146,8 @@ IOperand* Operand<T>::operator%(const IOperand &rhs) const
       npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) % rhs);
     }
-  stream >> tmpa;
-  stream.clear();
-  stream.str(rhs.toString());
-  stream >> tmp;
-  stream.clear();
+  tmpa = convertToRType(toString());
+  tmp = convertToRType(rhs.toString());
   if (tmp == 0)
     throw nFault("Modulo by zero");
   res = (tmpa % tmp);
@@ -174,11 +170,8 @@ IOperand* Operand<double>::operator%(const IOperand &rhs) const
       npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) % rhs);
     }
-  stream >> tmpa;
-  stream.clear();
-  stream.str(rhs.toString());
-  stream >> tmp;
-  stream.clear();
+  tmpa = convertToRType(toString());
+  tmp = convertToRType(rhs.toString());
   if (tmp == 0)
     throw nFault("Modulo by zero");
   res = std::fmod(tmpa, tmp);
@@ -201,11 +194,8 @@ IOperand* Operand<float>::operator%(const IOperand &rhs) const
       npreci = proc.createOperand(rhs.getType(), toString());
       return ((*npreci) % rhs);
     }
-  stream >> tmpa;
-  stream.clear();
-  stream.str(rhs.toString());
-  stream >> tmp;
-  stream.clear();
+  tmpa = convertToRType(toString());
+  tmp = convertToRType(rhs.toString());
   if (tmp == 0)
     throw nFault("Modulo by zero");
   res = std::fmod(tmpa, tmp);
