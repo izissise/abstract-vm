@@ -1,11 +1,6 @@
 #include  <cstdlib>
 #include "Chipset.hpp"
 
-/*
-  TODO:
-  exit pas a la fin
-*/
-
 Chipset::Chipset(const std::string &filename)
   : _currentCpu(Cpu::Instance())
 {
@@ -37,14 +32,14 @@ Chipset::Chipset(const std::string &filename)
           i++;
         }
     }
-  if (content[i - 1] != std::string("exit"))
-    throw nFault("Error there is no 'exit' at the end of file\n");
   i = 0;
-  while (i < content.size())
+  while (i < content.size() && _currentCpu.getExit() == false)
     {
       parse(content[i]);
       i++;
     }
+  if (_currentCpu.getExit() == false)
+    throw nFault("Error there is no 'exit'\n");
   //ctor
 }
 
@@ -77,14 +72,14 @@ Chipset::Chipset()
         }
 
     }
-  if (content[i - 1] != std::string("exit"))
-    throw nFault("Error there is no 'exit' at the end of file\n");
   i = 0;
-  while (i < content.size())
+  while (i < content.size() && _currentCpu.getExit() == false)
     {
       parse(content[i]);
       i++;
     }
+  if (_currentCpu.getExit() == false)
+    throw nFault("Error there is no 'exit'\n");
   //ctor
 }
 
