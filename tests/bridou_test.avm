@@ -1,0 +1,1428 @@
+push double(6)
+pop
+push float(55)
+push float(86)
+push int16(10)
+push int32(16)
+push float(31)
+push int8(39)
+push int16(17)
+push double(24)
+push double(76)
+mul
+push int8(81)
+push float(88)
+push float(61)
+add
+push int32(2)
+dump
+dump
+pop
+push int8(2)
+pop
+push int16(75)
+push float(47)
+dump
+push int8(2)
+pop
+push double(96)
+dump
+dump
+dump
+pop
+push double(26)
+push double(96)
+pop
+push int8(35)
+pop
+push float(27)
+push double(37)
+push float(99)
+push int16(43)
+push int16(11)
+push int32(50)
+push int16(21)
+dump
+push float(44)
+pop
+push int32(44)
+push float(32)
+push int8(54)
+add
+push int8(96)
+sub
+dump
+push int16(36)
+dump
+pop
+push double(20)
+push float(15)
+dump
+push int32(55)
+push int8(23)
+dump
+dump
+push double(22)
+mul
+dump
+dump
+dump
+pop
+push int16(3)
+pop
+push int16(27)
+pop
+push int16(55)
+push int16(49)
+add
+pop
+push double(6)
+push int8(1)
+push float(31)
+dump
+push int16(90)
+push int8(75)
+push float(100)
+push int32(79)
+pop
+push int32(83)
+pop
+push double(47)
+push float(48)
+div
+push double(84)
+push int8(5)
+pop
+push int16(69)
+pop
+push int8(76)
+dump
+push double(1)
+push float(99)
+push int8(44)
+mod
+push int8(71)
+push float(95)
+mod
+push int8(100)
+pop
+push double(75)
+dump
+push int16(19)
+push int32(27)
+div
+dump
+push int16(9)
+pop
+push double(14)
+push int32(66)
+mod
+push float(58)
+push int16(38)
+push int16(38)
+push int8(50)
+push int8(2)
+mod
+dump
+push float(16)
+push int16(70)
+dump
+dump
+dump
+push float(4)
+sub
+push float(19)
+mul
+dump
+dump
+pop
+push int32(63)
+dump
+push float(51)
+push double(58)
+push int16(12)
+pop
+push int16(88)
+dump
+push int8(41)
+pop
+dump
+push int8(71)
+push float(45)
+mul
+mod
+push int32(59)
+mul
+push int8(23)
+push int32(49)
+add
+mul
+push int16(14)
+mod
+push int8(27)
+mul
+pop
+push double(79)
+pop
+push int16(28)
+push int16(26)
+add
+dump
+pop
+push double(86)
+push int16(18)
+sub
+dump
+push float(43)
+push float(16)
+pop
+mul
+push int16(15)
+sub
+push int16(50)
+dump
+pop
+push double(60)
+dump
+dump
+push int8(5)
+push int8(30)
+push int32(58)
+dump
+push int8(34)
+div
+push int8(30)
+push int16(30)
+dump
+pop
+push int8(69)
+pop
+push float(96)
+push int16(39)
+dump
+dump
+push double(71)
+add
+pop
+push int8(93)
+push double(12)
+push int8(88)
+pop
+push int32(82)
+pop
+push float(45)
+push int16(76)
+pop
+push double(78)
+pop
+push int32(62)
+push int32(50)
+div
+dump
+pop
+push double(67)
+push int8(87)
+push int8(9)
+push double(88)
+push float(74)
+push double(30)
+push float(91)
+pop
+push float(16)
+pop
+push int16(95)
+push int16(99)
+pop
+push int8(48)
+push float(93)
+mod
+pop
+push double(22)
+push int32(21)
+add
+push int16(84)
+push double(98)
+push int8(67)
+dump
+push int16(55)
+mod
+push float(12)
+add
+dump
+pop
+push int8(16)
+push int8(92)
+mod
+push int8(2)
+pop
+push int8(71)
+dump
+pop
+push int32(49)
+pop
+push int32(10)
+dump
+push int32(80)
+mul
+push int8(26)
+dump
+push int16(44)
+push double(31)
+dump
+push int8(80)
+push int16(50)
+mod
+dump
+push int16(51)
+push int8(81)
+pop
+push int32(89)
+pop
+push int8(81)
+dump
+push int16(61)
+push int8(97)
+push int8(40)
+sub
+push float(76)
+mul
+push int8(78)
+mod
+push float(48)
+mod
+push double(11)
+push int32(24)
+push int8(83)
+div
+pop
+div
+pop
+push double(83)
+pop
+push double(42)
+push int16(90)
+dump
+pop
+push int16(27)
+dump
+push int32(32)
+mul
+push int8(59)
+push int8(69)
+push int16(77)
+sub
+mod
+push int32(47)
+pop
+push int32(87)
+mod
+push int32(96)
+add
+pop
+push int32(21)
+push double(19)
+dump
+push double(82)
+push int8(52)
+pop
+push int8(50)
+push float(89)
+mul
+dump
+dump
+push double(99)
+push int8(18)
+push int16(20)
+mod
+pop
+push double(46)
+push double(16)
+add
+pop
+push float(66)
+dump
+push int32(5)
+add
+pop
+push float(16)
+dump
+dump
+pop
+push int8(39)
+pop
+push int16(13)
+pop
+push int32(67)
+pop
+push double(69)
+pop
+push int16(70)
+push int8(5)
+mod
+push float(21)
+push int16(95)
+sub
+mod
+pop
+push int8(95)
+push int8(55)
+dump
+dump
+dump
+pop
+push int16(67)
+push int16(62)
+pop
+push int16(43)
+push float(37)
+div
+push float(94)
+push int8(30)
+push float(64)
+pop
+dump
+dump
+pop
+push int32(55)
+dump
+push int32(22)
+mod
+dump
+push int32(42)
+dump
+sub
+push int32(42)
+pop
+dump
+dump
+pop
+push int8(72)
+push int16(10)
+pop
+push int16(25)
+push int16(92)
+pop
+push int32(74)
+dump
+dump
+push float(75)
+dump
+pop
+push double(23)
+push float(78)
+push int32(77)
+sub
+pop
+pop
+push int32(69)
+push double(49)
+push float(97)
+push int32(44)
+pop
+push float(78)
+dump
+dump
+push int16(46)
+push int16(27)
+push double(77)
+mul
+mod
+dump
+push int32(81)
+push int32(61)
+push int32(19)
+dump
+dump
+pop
+push int32(44)
+push int8(37)
+mul
+push int16(30)
+push float(94)
+div
+dump
+pop
+push int16(13)
+push float(69)
+push double(80)
+pop
+push int8(73)
+dump
+dump
+push int8(9)
+push int32(30)
+push float(66)
+dump
+push int32(54)
+push float(99)
+push int8(98)
+pop
+push int32(39)
+push int16(22)
+dump
+push int32(14)
+mod
+push int8(12)
+push int16(99)
+div
+add
+push float(29)
+mod
+push int16(96)
+pop
+push double(69)
+dump
+dump
+dump
+dump
+push int8(99)
+add
+push double(77)
+sub
+dump
+dump
+dump
+push double(68)
+push double(91)
+push int8(37)
+sub
+pop
+push int16(49)
+pop
+push int8(32)
+push int16(62)
+pop
+push double(45)
+push double(29)
+dump
+push float(96)
+pop
+push float(67)
+pop
+push float(60)
+dump
+pop
+push float(60)
+push int32(61)
+push int16(28)
+add
+pop
+push int8(84)
+push float(51)
+push int32(25)
+push double(6)
+add
+push int8(17)
+push float(12)
+div
+pop
+push int16(49)
+push float(53)
+push int8(41)
+push int32(5)
+push int8(12)
+dump
+dump
+push float(83)
+push int8(19)
+push int16(40)
+pop
+dump
+pop
+push float(64)
+pop
+push int16(99)
+dump
+pop
+push float(59)
+push double(22)
+push int32(65)
+push double(94)
+push int32(99)
+dump
+dump
+push int16(24)
+sub
+push double(63)
+div
+pop
+push float(66)
+push int32(52)
+pop
+push double(29)
+pop
+push int16(11)
+push float(69)
+dump
+pop
+push int16(48)
+dump
+pop
+push float(36)
+dump
+push float(19)
+push int32(37)
+push double(23)
+pop
+push double(8)
+push int8(30)
+push int32(22)
+dump
+add
+mul
+pop
+push int16(32)
+dump
+pop
+push int8(5)
+push double(9)
+dump
+push float(27)
+push int32(49)
+pop
+push float(44)
+push int8(10)
+pop
+push int16(38)
+push float(81)
+push int16(30)
+mul
+add
+dump
+dump
+sub
+push double(45)
+pop
+pop
+push float(67)
+pop
+push int32(68)
+push int8(4)
+pop
+push int16(99)
+push int32(15)
+push double(51)
+pop
+push float(68)
+push int32(43)
+push int8(51)
+dump
+pop
+push int16(62)
+pop
+push int16(83)
+push int32(14)
+add
+dump
+push int32(58)
+push float(49)
+push double(25)
+push float(26)
+pop
+push int32(26)
+push int16(92)
+push double(44)
+mul
+push int16(70)
+push int16(71)
+div
+push double(91)
+push float(62)
+push int8(31)
+push int32(64)
+sub
+pop
+push int8(79)
+push int8(82)
+dump
+push float(27)
+push int32(91)
+push float(90)
+div
+push int8(18)
+mul
+dump
+push double(17)
+dump
+pop
+push int16(51)
+push int8(33)
+push int32(7)
+push int16(24)
+pop
+push int8(100)
+push float(26)
+div
+push int8(80)
+dump
+push int16(18)
+push int16(20)
+dump
+sub
+push double(85)
+dump
+div
+push int16(91)
+push int8(61)
+push int32(35)
+dump
+dump
+pop
+push double(65)
+dump
+dump
+push int8(25)
+pop
+push double(7)
+push int16(14)
+pop
+push int32(93)
+mul
+push double(82)
+dump
+div
+pop
+push int16(4)
+push double(16)
+mod
+push int32(17)
+add
+pop
+push double(86)
+push int16(7)
+push int8(33)
+push int32(57)
+push int32(53)
+sub
+push int16(90)
+mul
+pop
+push double(60)
+dump
+push float(14)
+push float(20)
+pop
+push double(86)
+push int8(28)
+pop
+pop
+push double(66)
+pop
+push double(47)
+pop
+push double(27)
+push double(72)
+push int8(48)
+push int16(42)
+mul
+dump
+push double(22)
+mod
+push int8(18)
+push double(32)
+push int32(52)
+mul
+pop
+push double(17)
+dump
+push double(37)
+mul
+dump
+pop
+push int8(80)
+dump
+push int8(27)
+pop
+push int32(31)
+pop
+push int32(32)
+pop
+push int16(44)
+push float(23)
+push int8(76)
+pop
+push int8(75)
+div
+dump
+pop
+push float(54)
+push int32(96)
+push double(55)
+dump
+mod
+push double(22)
+dump
+push double(20)
+dump
+push int32(12)
+pop
+push double(85)
+push int8(92)
+push double(93)
+sub
+push int32(38)
+push double(82)
+pop
+dump
+sub
+add
+dump
+dump
+push float(41)
+push int32(6)
+div
+push float(71)
+push float(59)
+dump
+dump
+pop
+push float(26)
+dump
+dump
+push float(32)
+push int8(69)
+push int8(91)
+sub
+pop
+push int16(95)
+dump
+push int16(7)
+dump
+push int8(42)
+push int32(67)
+pop
+push int8(54)
+mul
+pop
+pop
+push float(16)
+push float(7)
+push int32(46)
+dump
+push int8(16)
+push double(22)
+push int16(19)
+push float(90)
+push double(90)
+push int8(67)
+push float(94)
+push float(93)
+push float(31)
+dump
+pop
+push double(48)
+push int32(19)
+dump
+sub
+push int32(12)
+add
+pop
+push int8(71)
+dump
+push int32(54)
+dump
+add
+push int8(21)
+pop
+push float(6)
+pop
+push int32(57)
+push float(95)
+sub
+push int16(57)
+push int16(77)
+div
+pop
+dump
+push double(26)
+dump
+push int8(18)
+push double(18)
+push int16(53)
+sub
+push double(14)
+push int16(43)
+mul
+dump
+push int8(81)
+push int16(48)
+push int32(11)
+push int32(44)
+div
+push int16(2)
+pop
+push int8(75)
+push float(18)
+div
+push double(57)
+push double(16)
+pop
+push double(57)
+push int16(62)
+pop
+push int32(16)
+push double(58)
+push double(69)
+add
+push int8(95)
+dump
+mod
+push int8(51)
+push float(49)
+pop
+push int16(52)
+push int32(88)
+mul
+push float(88)
+div
+pop
+push double(9)
+push int32(45)
+pop
+dump
+push float(79)
+pop
+push float(21)
+push int16(78)
+push int32(12)
+dump
+push int32(81)
+push double(92)
+push float(69)
+push float(59)
+pop
+push double(78)
+dump
+push int32(75)
+dump
+push int16(57)
+push int8(87)
+push double(4)
+mul
+push int8(30)
+push float(93)
+pop
+push int16(71)
+pop
+push double(40)
+push double(22)
+mod
+pop
+push int32(99)
+dump
+pop
+push int32(7)
+dump
+pop
+push double(71)
+push float(55)
+push int16(69)
+dump
+push float(67)
+pop
+push int16(45)
+push int8(19)
+push double(70)
+push float(86)
+sub
+pop
+push int8(4)
+push double(31)
+dump
+push double(15)
+pop
+push float(20)
+dump
+dump
+push int16(28)
+sub
+push float(52)
+push int8(94)
+push int8(3)
+dump
+dump
+push int16(3)
+push float(15)
+push int32(10)
+push int16(56)
+dump
+push double(92)
+mod
+pop
+push int32(27)
+pop
+push double(84)
+push float(63)
+push int32(57)
+dump
+mul
+push float(91)
+push int16(45)
+pop
+push int32(33)
+dump
+push int8(78)
+push int32(44)
+push int8(6)
+push double(90)
+push int8(9)
+add
+mod
+pop
+push float(11)
+pop
+push double(13)
+push int8(76)
+sub
+push float(35)
+push int16(17)
+push double(91)
+add
+pop
+push double(13)
+push int16(92)
+push float(86)
+pop
+push int16(31)
+push int32(95)
+add
+push int32(87)
+pop
+push float(31)
+pop
+push int8(59)
+pop
+push int8(76)
+push int16(22)
+push double(16)
+pop
+push float(28)
+dump
+pop
+push int32(19)
+dump
+pop
+push double(80)
+pop
+push double(46)
+push int8(1)
+mul
+dump
+push float(15)
+add
+dump
+pop
+push float(12)
+dump
+push double(5)
+pop
+push int8(84)
+push int8(16)
+push int16(85)
+pop
+dump
+pop
+push float(22)
+pop
+push int32(22)
+dump
+push double(97)
+dump
+push float(27)
+push float(33)
+dump
+mod
+pop
+push int16(8)
+push int8(76)
+mod
+pop
+push int8(35)
+push float(76)
+dump
+push double(79)
+dump
+push int8(2)
+pop
+push int8(90)
+print
+pop
+push int8(66)
+pop
+push int8(98)
+push int32(6)
+push double(24)
+push int8(27)
+sub
+push int16(69)
+sub
+pop
+push float(32)
+push int32(2)
+sub
+push int8(63)
+mod
+push double(35)
+push int16(31)
+mod
+push int16(97)
+mul
+push int16(95)
+add
+push int16(89)
+push float(72)
+pop
+push float(40)
+pop
+push int32(39)
+pop
+push float(84)
+dump
+pop
+push int8(23)
+dump
+push float(97)
+push int16(53)
+add
+push double(5)
+sub
+div
+push double(100)
+pop
+push double(30)
+dump
+pop
+push int32(18)
+pop
+push float(69)
+dump
+pop
+push double(39)
+push int16(85)
+push int8(20)
+dump
+dump
+pop
+push double(43)
+push double(8)
+dump
+add
+push float(49)
+pop
+push int32(88)
+dump
+push double(59)
+dump
+pop
+pop
+push int32(77)
+push float(50)
+dump
+push double(88)
+add
+push int16(56)
+pop
+push int8(44)
+push double(93)
+dump
+pop
+push int32(4)
+push int8(69)
+assert int16(71)
+push double(47)
+add
+pop
+push float(57)
+dump
+pop
+push int32(51)
+push double(35)
+pop
+push int8(99)
+dump
+pop
+push double(24)
+push float(49)
+dump
+div
+dump
+push float(87)
+push double(87)
+push float(43)
+mul
+push int8(21)
+dump
+push int32(56)
+push int32(99)
+sub
+push int16(89)
+pop
+push int32(82)
+push int16(18)
+push float(6)
+sub
+dump
+push float(38)
+mul
+pop
+push int8(55)
+pop
+push double(19)
+push float(61)
+push float(8)
+add
+pop
+push int8(62)
+push int16(16)
+push int8(59)
+push int8(49)
+push int32(100)
+mod
+dump
+push double(44)
+dump
+add
+dump
+push float(44)
+push int8(56)
+pop
+push int8(31)
+pop
+push int16(46)
+dump
+push double(37)
+dump
+div
+dump
+pop
+push float(82)
+push int16(87)
+push int16(62)
+push float(12)
+pop
+push int16(100)
+dump
+pop
+push int16(75)
+push int16(69)
+add
+pop
+push int16(72)
+push int8(82)
+push int32(23)
+push double(60)
+mul
+push double(24)
+pop
+push int32(31)
+dump
+pop
+push float(30)
+pop
+push int32(66)
+push float(75)
+push int8(64)
+mod
+push float(83)
+push double(79)
+push int32(63)
+push int16(23)
+push double(37)
+div
+push double(92)
+dump
+dump
+push float(89)
+mod
+push double(77)
+push int16(94)
+push int16(44)
+dump
+pop
+push double(85)
+push double(50)
+pop
+push float(72)
+pop
+push float(49)
+dump
+push int32(52)
+mul
+push int8(95)
+dump
+push int8(26)
+pop
+push int8(24)
+push double(48)
+push double(2)
+push double(24)
+push int32(4)
+pop
+dump
+push float(25)
+push double(32)
+push double(82)
+dump
+push double(54)
+mod
+push double(24)
+dump
+push double(60)
+pop
+push int8(51)
+pop
+push float(17)
+pop
+push int16(38)
+push float(34)
+sub
+dump
+dump
+push int16(35)
+add
+push double(4)
+dump
+push int32(63)
+push double(44)
+dump
+add
+div
+dump
+dump
+dump
+push float(98)
+div
+pop
+push int8(60)
+push int8(71)
+push float(18)
+dump
+push float(38)
+pop
+push int16(87)
+push float(13)
+dump
+push int32(5)
+sub
+mod
+pop
+push int16(59)
+dump
+push int32(31)
+dump
+push int16(61)
+add
+mod
+push int16(92)
+push int32(71)
+dump
+pop
+push float(12)
+pop
+push int8(60)
+push int32(27)
+dump
+push double(95)
+dump
+push int16(26)
+push int8(65)
+pop
+push int8(61)
+dump
+dump
+pop
+push int8(14)
+push int16(69)
+add
+dump
+push int32(72)
+push double(46)
+pop
+push int8(34)
+push double(53)
+dump
+push float(79)
+pop
+push int8(48)
+push double(68)
+push float(94)
+push int32(42)
+div
+dump
+pop
+push int32(46)
+push int16(40)
+mod
+dump
+push int16(86)
+mul
+dump
+pop
+push float(56)
+push int8(88)
+push float(68)
+pop
+push int32(89)
+push double(33)
+push int8(25)
+push float(28)
+push int32(42)
+add
+dump
+push int8(19)
+div
+push int32(91)
+push double(82)
+sub
+push float(65)
+mul
+push int8(26)
+dump
+push int8(40)
+sub
+push float(60)
+push int8(42)
+push double(39)
+sub
+push double(38)
+pop
+push int16(65)
+push int16(15)
+push double(99)
+dump
+pop
+dump
+push float(14)
+pop
+dump
+push float(46)
+add
+dump
+pop
+push double(81)
+dump
+dump
+dump
+pop
+push int16(75)
+dump
+push double(54)
+push int32(7)
+add
+pop
+push int32(81)
+dump
+pop
+push float(19)
+pop
+push int8(83)
+pop
+push int16(6)
+pop
+push double(76)
+dump
+push int16(36)
+pop
+push int8(7)
+dump
+exit
