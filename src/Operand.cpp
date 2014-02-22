@@ -3,7 +3,13 @@
 template<typename T>
 Operand<T>::Operand(const std::string& value, eOperandType type)
 {
-  _value = value;
+  std::stringstream rvalue(value);
+  T tmp;
+
+  rvalue >> tmp;
+  rvalue.clear();
+  rvalue << tmp;
+  _value = rvalue.str();
   _type = type;
 }
 
