@@ -1,0 +1,6 @@
+push int8(97)
+push int8(40)
+sub
+push float(76)
+mul
+exit
