@@ -13,7 +13,7 @@ int main(int argc, char **argv)
       else
         Chipset(std::string(argv[1]));
     }
-  catch (Fault& e)
+  catch (std::exception& e)
     {
       std::cerr << e.what() << std::endl;
     }
