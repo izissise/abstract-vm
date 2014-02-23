@@ -20,7 +20,7 @@
 				<Option object_output="./" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="tests/sub_test.avm" />
+				<Option parameters="tests/no_op.avm" />
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="src/" />

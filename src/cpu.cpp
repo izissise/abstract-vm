@@ -59,60 +59,70 @@ void Cpu::add()
 {
   IOperand* a;
   IOperand* b;
+  IOperand* res;
 
   a = _ram.top(1);
   b = _ram.top();
-  _ram.push((*a) + (*b));
+  res = (*a) + (*b);
   _ram.pop();
   _ram.pop();
+  _ram.push(res);
 }
 
 void Cpu::sub()
 {
   IOperand* a;
   IOperand* b;
+  IOperand* res;
 
   a = _ram.top(1);
   b = _ram.top();
-  _ram.push((*a) - (*b));
+  res = (*a) - (*b);
   _ram.pop();
   _ram.pop();
+  _ram.push(res);
 }
 
 void Cpu::mul()
 {
   IOperand* a;
   IOperand* b;
+  IOperand* res;
 
   a = _ram.top(1);
   b = _ram.top();
-  _ram.push((*a) * (*b));
+  res = (*a) * (*b);
   _ram.pop();
   _ram.pop();
+  _ram.push(res);
 }
 
 void Cpu::div()
 {
   IOperand* a;
   IOperand* b;
+  IOperand* res;
 
   a = _ram.top(1);
   b = _ram.top();
-  _ram.push((*a) / (*b));
+  res = (*a) / (*b);
   _ram.pop();
   _ram.pop();
+  _ram.push(res);
 }
 
 void Cpu::mod()
 {
   IOperand* a;
   IOperand* b;
+  IOperand* res;
 
   a = _ram.top(1);
   b = _ram.top();
-  _ram.push((*a) % (*b));
+  res = (*a) % (*b);
   _ram.pop();
   _ram.pop();
+  _ram.push(res);
 }
 
 void Cpu::print() const
