@@ -5,12 +5,8 @@ template<typename T>
 Operand<T>::Operand(const std::string& value, eOperandType type)
 {
   std::stringstream rvalue(value);
-  T tmp;
 
-  rvalue >> tmp;
-  rvalue.clear();
-  rvalue << tmp;
-  _value = rvalue.str();
+  _value = convertFromRType(convertToRType(value));
   _type = type;
 }
 
@@ -38,7 +34,7 @@ eOperandType Operand<T>::getType() const
 }
 
 template<typename T>
-T Operand<T>::convertToRType(std::string value) const
+T Operand<T>::convertToRType(const std::string& value) const
 {
   std::stringstream stream(value);
   T ret;
@@ -49,7 +45,7 @@ T Operand<T>::convertToRType(std::string value) const
 }
 
 template<>
-int8_t Operand<int8_t>::convertToRType(std::string value) const
+int8_t Operand<int8_t>::convertToRType(const std::string& value) const
 {
   std::stringstream stream(value);
   int ret;

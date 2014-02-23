@@ -44,19 +44,19 @@ void Cpu::dump() const
 void Cpu::assert(IOperand* nb) const
 {
   IOperand* tnb = _ram.top();
+  std::string tmpa = nb->toString();
+  std::string tmpb = tnb->toString();
 
   if (nb->getType() == tnb->getType())
     {
-      double tmpa;
-      double tmpb;
-      std::stringstream a(nb->toString());
-      std::stringstream b(tnb->toString());
-      a >> tmpa;
-      b >> tmpb;
       if (tmpa == tmpb)
-        return;
+        {
+          delete nb;
+          return;
+        }
     }
-  throw nFault("Assert failed");
+  delete nb;
+  throw nFault(std::string("Assert(") + tmpa + " == " + tmpb + ") failed.");
 }
 
 void Cpu::add()
