@@ -83,6 +83,7 @@ template<typename T>
 IOperand* Operand<T>::operator+(const IOperand &rhs) const
 {
   IOperand* npreci;
+  IOperand* ntmp;
   Cpu& proc = Cpu::Instance();
   T tmpa;
   T tmp;
@@ -91,7 +92,9 @@ IOperand* Operand<T>::operator+(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      return ((*npreci) + rhs);
+      ntmp = (*npreci) + rhs;
+      delete npreci;
+      return (ntmp);
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
@@ -103,6 +106,7 @@ template<typename T>
 IOperand* Operand<T>::operator-(const IOperand &rhs) const
 {
   IOperand* npreci;
+  IOperand* ntmp;
   Cpu& proc = Cpu::Instance();
   T tmpa;
   T tmp;
@@ -111,7 +115,9 @@ IOperand* Operand<T>::operator-(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      return ((*npreci) - rhs);
+      ntmp = (*npreci) + rhs;
+      delete npreci;
+      return (ntmp);
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
@@ -123,6 +129,7 @@ template<typename T>
 IOperand* Operand<T>::operator*(const IOperand &rhs) const
 {
   IOperand* npreci;
+  IOperand* ntmp;
   Cpu& proc = Cpu::Instance();
   T tmpa;
   T tmp;
@@ -131,7 +138,9 @@ IOperand* Operand<T>::operator*(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      return ((*npreci) * rhs);
+      ntmp = (*npreci) + rhs;
+      delete npreci;
+      return (ntmp);
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
@@ -143,6 +152,7 @@ template<typename T>
 IOperand* Operand<T>::operator/(const IOperand &rhs) const
 {
   IOperand* npreci;
+  IOperand* ntmp;
   Cpu& proc = Cpu::Instance();
   T tmpa;
   T tmp;
@@ -151,7 +161,9 @@ IOperand* Operand<T>::operator/(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      return ((*npreci) / rhs);
+      ntmp = (*npreci) + rhs;
+      delete npreci;
+      return (ntmp);
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
@@ -165,6 +177,7 @@ template<typename T>
 IOperand* Operand<T>::operator%(const IOperand &rhs) const
 {
   IOperand* npreci;
+  IOperand* ntmp;
   Cpu& proc = Cpu::Instance();
   T tmpa;
   T tmp;
@@ -173,7 +186,9 @@ IOperand* Operand<T>::operator%(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      return ((*npreci) % rhs);
+      ntmp = (*npreci) + rhs;
+      delete npreci;
+      return (ntmp);
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
@@ -187,6 +202,7 @@ template<>
 IOperand* Operand<double>::operator%(const IOperand &rhs) const
 {
   IOperand* npreci;
+  IOperand* ntmp;
   Cpu& proc = Cpu::Instance();
   double tmpa;
   double tmp;
@@ -195,7 +211,9 @@ IOperand* Operand<double>::operator%(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      return ((*npreci) % rhs);
+      ntmp = (*npreci) + rhs;
+      delete npreci;
+      return (ntmp);
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
@@ -209,6 +227,7 @@ template<>
 IOperand* Operand<float>::operator%(const IOperand &rhs) const
 {
   IOperand* npreci;
+  IOperand* ntmp;
   Cpu& proc = Cpu::Instance();
   float tmpa;
   float tmp;
@@ -217,7 +236,9 @@ IOperand* Operand<float>::operator%(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      return ((*npreci) % rhs);
+      ntmp = (*npreci) + rhs;
+      delete npreci;
+      return (ntmp);
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
