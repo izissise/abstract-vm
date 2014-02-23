@@ -17,15 +17,16 @@ void Memory::pop()
 {
   if (_stack.empty())
     throw nFault("Stack is empty can't pop");
+  delete top();
   _stack.pop_front();
 }
 
-IOperand* Memory::top() const
+IOperand* Memory::top(size_t i) const
 {
   IOperand* nb;
-  if (_stack.empty())
+  if (_stack.size() <= i)
     throw nFault("Stack is empty no top value");
-  nb = _stack.front();
+  nb = _stack[i];
   return (nb);
 }
 

@@ -29,11 +29,7 @@ void Cpu::push(IOperand* nb)
 
 void Cpu::pop()
 {
-  IOperand* a;
-
-  a = _ram.top();
   _ram.pop();
-  delete a;
 }
 
 void Cpu::dump() const
@@ -64,11 +60,11 @@ void Cpu::add()
   IOperand* a;
   IOperand* b;
 
-  a = _ram.top();
-  _ram.pop();
+  a = _ram.top(1);
   b = _ram.top();
-  _ram.pop();
   _ram.push((*a) + (*b));
+  _ram.pop();
+  _ram.pop();
 }
 
 void Cpu::sub()
@@ -76,11 +72,11 @@ void Cpu::sub()
   IOperand* a;
   IOperand* b;
 
-  a = _ram.top();
-  _ram.pop();
+  a = _ram.top(1);
   b = _ram.top();
-  _ram.pop();
   _ram.push((*a) - (*b));
+  _ram.pop();
+  _ram.pop();
 }
 
 void Cpu::mul()
@@ -88,11 +84,11 @@ void Cpu::mul()
   IOperand* a;
   IOperand* b;
 
-  a = _ram.top();
-  _ram.pop();
+  a = _ram.top(1);
   b = _ram.top();
-  _ram.pop();
   _ram.push((*a) * (*b));
+  _ram.pop();
+  _ram.pop();
 }
 
 void Cpu::div()
@@ -100,11 +96,11 @@ void Cpu::div()
   IOperand* a;
   IOperand* b;
 
-  a = _ram.top();
-  _ram.pop();
+  a = _ram.top(1);
   b = _ram.top();
-  _ram.pop();
   _ram.push((*a) / (*b));
+  _ram.pop();
+  _ram.pop();
 }
 
 void Cpu::mod()
@@ -112,11 +108,11 @@ void Cpu::mod()
   IOperand* a;
   IOperand* b;
 
-  a = _ram.top();
-  _ram.pop();
+  a = _ram.top(1);
   b = _ram.top();
-  _ram.pop();
   _ram.push((*a) % (*b));
+  _ram.pop();
+  _ram.pop();
 }
 
 void Cpu::print() const
