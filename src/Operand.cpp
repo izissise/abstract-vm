@@ -1,3 +1,4 @@
+#include <limits.h>
 #include "Operand.hpp"
 
 template<typename T>
@@ -47,10 +48,40 @@ T Operand<T>::convertToRType(std::string value) const
   return (ret);
 }
 
+template<>
+int8_t Operand<int8_t>::convertToRType(std::string value) const
+{
+  std::stringstream stream(value);
+  int ret;
+
+  if (!(stream >> ret))
+    throw nFault("Can't convert " + value + " to type.");
+  if (ret > CHAR_MAX || ret < CHAR_MIN)
+    throw nFault("Under/Overflow on " + value + ".");
+  return (static_cast<int8_t>(ret));
+}
+
+template<typename T>
+std::string Operand<T>::convertFromRType(T value) const
+{
+  std::stringstream stream;
+
+  stream << value;
+  return (stream.str());
+}
+
+template<>
+std::string Operand<int8_t>::convertFromRType(int8_t value) const
+{
+  std::stringstream stream;
+
+  stream << static_cast<int>(value);
+  return (stream.str());
+}
+
 template<typename T>
 IOperand* Operand<T>::operator+(const IOperand &rhs) const
 {
-  std::stringstream stream;
   IOperand* npreci;
   Cpu& proc = Cpu::Instance();
   T tmpa;
@@ -64,17 +95,13 @@ IOperand* Operand<T>::operator+(const IOperand &rhs) const
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
- /* if (((tmp > 0) && (tmpa > INT_MAX - tmp)) || ((tmp < 0) && (tmpa < INT_MIN - tmp)))
-    throw nFault("Overflow/Underflow");*/
   res = (tmpa + tmp);
-  stream << res;
-  return (proc.createOperand(_type, stream.str()));
+  return (proc.createOperand(_type, convertFromRType(res)));
 }
 
 template<typename T>
 IOperand* Operand<T>::operator-(const IOperand &rhs) const
 {
-  std::stringstream stream(toString());
   IOperand* npreci;
   Cpu& proc = Cpu::Instance();
   T tmpa;
@@ -89,14 +116,12 @@ IOperand* Operand<T>::operator-(const IOperand &rhs) const
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
   res = (tmpa - tmp);
-  stream << res;
-  return (proc.createOperand(_type, stream.str()));
+  return (proc.createOperand(_type, convertFromRType(res)));
 }
 
 template<typename T>
 IOperand* Operand<T>::operator*(const IOperand &rhs) const
 {
-  std::stringstream stream(toString());
   IOperand* npreci;
   Cpu& proc = Cpu::Instance();
   T tmpa;
@@ -111,14 +136,12 @@ IOperand* Operand<T>::operator*(const IOperand &rhs) const
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
   res = (tmpa * tmp);
-  stream << res;
-  return (proc.createOperand(_type, stream.str()));
+  return (proc.createOperand(_type, convertFromRType(res)));
 }
 
 template<typename T>
 IOperand* Operand<T>::operator/(const IOperand &rhs) const
 {
-  std::stringstream stream(toString());
   IOperand* npreci;
   Cpu& proc = Cpu::Instance();
   T tmpa;
@@ -135,14 +158,12 @@ IOperand* Operand<T>::operator/(const IOperand &rhs) const
   if (tmp == 0)
     throw nFault("Division by zero");
   res = (tmpa / tmp);
-  stream << res;
-  return (proc.createOperand(_type, stream.str()));
+  return (proc.createOperand(_type, convertFromRType(res)));
 }
 
 template<typename T>
 IOperand* Operand<T>::operator%(const IOperand &rhs) const
 {
-  std::stringstream stream(toString());
   IOperand* npreci;
   Cpu& proc = Cpu::Instance();
   T tmpa;
@@ -159,14 +180,12 @@ IOperand* Operand<T>::operator%(const IOperand &rhs) const
   if (tmp == 0)
     throw nFault("Modulo by zero");
   res = (tmpa % tmp);
-  stream << res;
-  return (proc.createOperand(_type, stream.str()));
+  return (proc.createOperand(_type, convertFromRType(res)));
 }
 
 template<>
 IOperand* Operand<double>::operator%(const IOperand &rhs) const
 {
-  std::stringstream stream(toString());
   IOperand* npreci;
   Cpu& proc = Cpu::Instance();
   double tmpa;
@@ -183,14 +202,12 @@ IOperand* Operand<double>::operator%(const IOperand &rhs) const
   if (tmp == 0)
     throw nFault("Modulo by zero");
   res = std::fmod(tmpa, tmp);
-  stream << res;
-  return (proc.createOperand(_type, stream.str()));
+  return (proc.createOperand(_type, convertFromRType(res)));
 }
 
 template<>
 IOperand* Operand<float>::operator%(const IOperand &rhs) const
 {
-  std::stringstream stream(toString());
   IOperand* npreci;
   Cpu& proc = Cpu::Instance();
   float tmpa;
@@ -207,8 +224,7 @@ IOperand* Operand<float>::operator%(const IOperand &rhs) const
   if (tmp == 0)
     throw nFault("Modulo by zero");
   res = std::fmod(tmpa, tmp);
-  stream << res;
-  return (proc.createOperand(_type, stream.str()));
+  return (proc.createOperand(_type, convertFromRType(res)));
 }
 
 template class Operand<int8_t>;

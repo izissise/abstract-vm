@@ -28,6 +28,7 @@ public:
 
 private:
   T convertToRType(std::string value) const;
+  std::string convertFromRType(T value) const;
 
   std::string _value;
   eOperandType _type;

@@ -29,7 +29,11 @@ void Cpu::push(IOperand* nb)
 
 void Cpu::pop()
 {
+  IOperand* a;
+
+  a = _ram.top();
   _ram.pop();
+  delete a;
 }
 
 void Cpu::dump() const
