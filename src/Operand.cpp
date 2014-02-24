@@ -1,4 +1,4 @@
-#include <limits.h>
+#include <limits>
 #include "Operand.hpp"
 
 template<typename T>
@@ -52,7 +52,7 @@ int8_t Operand<int8_t>::convertToRType(const std::string& value) const
 
   if (!(stream >> ret))
     throw nFault("Under/Overflow on " + value + ".");
-  if (ret > CHAR_MAX || ret < CHAR_MIN)
+  if (ret > std::numeric_limits<int8_t>::max() || ret < std::numeric_limits<int8_t>::min())
     throw nFault("Under/Overflow on " + value + ".");
   return (static_cast<int8_t>(ret));
 }
