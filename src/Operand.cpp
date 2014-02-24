@@ -40,7 +40,7 @@ T Operand<T>::convertToRType(const std::string& value) const
   T ret;
 
   if (!(stream >> ret))
-    throw nFault("Can't convert " + value + " to type.");
+    throw nFault("Under/Overflow on " + value + ".");
   return (ret);
 }
 
@@ -51,7 +51,7 @@ int8_t Operand<int8_t>::convertToRType(const std::string& value) const
   int ret;
 
   if (!(stream >> ret))
-    throw nFault("Can't convert " + value + " to type.");
+    throw nFault("Under/Overflow on " + value + ".");
   if (ret > CHAR_MAX || ret < CHAR_MIN)
     throw nFault("Under/Overflow on " + value + ".");
   return (static_cast<int8_t>(ret));
