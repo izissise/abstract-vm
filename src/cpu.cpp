@@ -37,7 +37,7 @@ void Cpu::dump() const
   _ram.dump();
 }
 
-void Cpu::assert(IOperand* nb) const
+void Cpu::assert(const IOperand* nb) const
 {
   IOperand* tnb = _ram.top();
   std::string tmpa = nb->toString();
