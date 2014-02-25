@@ -120,9 +120,9 @@ IOperand* Operand<T>::operator-(const IOperand &rhs) const
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
-  if (((tmp > 0) && (tmpa > std::numeric_limits<T>::max() + tmp))
-      || ((tmp < 0) && (tmpa < std::numeric_limits<T>::min() + tmp)))
-    throw nFault("Under/Overflow on " + _value + " - " + rhs.toString());
+ /* if (((tmp > 0) && (tmpa > std::numeric_limits<T>::max() - tmp))
+      || ((tmp < 0) && (tmpa < std::numeric_limits<T>::min() - tmp)))
+    throw nFault("Under/Overflow on " + _value + " - " + rhs.toString());*/
   res = (tmpa - tmp);
   return (proc.createOperand(_type, convertFromRType(res)));
 }
@@ -146,9 +146,9 @@ IOperand* Operand<T>::operator*(const IOperand &rhs) const
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
-  if (((tmp > 0) && (tmpa > std::numeric_limits<T>::max() / tmp))
+ /* if (((tmp > 0) && (tmpa > std::numeric_limits<T>::max() / tmp))
       || ((tmp < 0) && (tmpa < std::numeric_limits<T>::min() / tmp)))
-    throw nFault("Under/Overflow on " + _value + " * " + rhs.toString());
+    throw nFault("Under/Overflow on " + _value + " * " + rhs.toString());*/
   res = (tmpa * tmp);
   return (proc.createOperand(_type, convertFromRType(res)));
 }
@@ -174,9 +174,9 @@ IOperand* Operand<T>::operator/(const IOperand &rhs) const
   tmp = convertToRType(rhs.toString());
   if (tmp == 0)
     throw nFault("Division by zero");
-  if (((tmp > 0) && (tmpa > std::numeric_limits<T>::max() / tmp))
+ /* if (((tmp > 0) && (tmpa > std::numeric_limits<T>::max() / tmp))
       || ((tmp < 0) && (tmpa < std::numeric_limits<T>::min() / tmp)))
-    throw nFault("Under/Overflow on " + _value + " - " + rhs.toString());
+    throw nFault("Under/Overflow on " + _value + " - " + rhs.toString());*/
   res = (tmpa / tmp);
   return (proc.createOperand(_type, convertFromRType(res)));
 }
