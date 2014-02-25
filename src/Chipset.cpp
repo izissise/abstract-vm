@@ -5,7 +5,6 @@ Chipset::Chipset(const std::string &filename)
   : _currentCpu(Cpu::Instance())
 {
   std::string line;
-  std::vector<std::string> content;
   std::ifstream ifs(filename.c_str());
   unsigned int i = 0;
   //  size_t find;
@@ -33,7 +32,6 @@ Chipset::Chipset()
   std::string line;
   std::string tmp;
   unsigned int i = 0;
-  //  size_t find;
 
   setOperand();
   setOperators();
