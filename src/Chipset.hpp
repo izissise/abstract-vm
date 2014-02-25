@@ -18,11 +18,13 @@ public:
   Chipset(const std::string &filename);
   ~Chipset();
 private:
-  std::map<std::string, void (Cpu::*)(void)> _operators;
-  std::map<std::string, void (Cpu::*)(void) const> _operatorsConst;
-  std::map<std::string, eOperandType> _typemap;
-  Cpu	&_currentCpu;
+  std::map<std::string, void (Cpu::*)(void)>		_operators;
+  std::map<std::string, void (Cpu::*)(void) const>	_operatorsConst;
+  std::map<std::string, eOperandType>			_typemap;
+  Cpu							&_currentCpu;
+  std::vector<std::string>				content;
 private:
+  void		parsing(std::string &line);
   void		setOperators();
   void		setOperand();
   IOperand	*getOperand(std::string str);

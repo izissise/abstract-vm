@@ -8,33 +8,14 @@ Chipset::Chipset(const std::string &filename)
   std::vector<std::string> content;
   std::ifstream ifs(filename.c_str());
   unsigned int i = 0;
-  size_t find;
+  //  size_t find;
 
   setOperand();
   setOperators();
   if (!ifs.is_open())
     throw nFault("Error openning '" + filename + "'\n");
   while(std::getline(ifs, line))
-    {
-      find = line.find("  ");
-      while (std::string::npos != find)
-        {
-          line.erase(find, 1);
-          find = line.find("  ");
-        }
-      find = line.find_first_not_of(" ");
-      if (std::string::npos != find)
-	line.erase(0, find);
-      if (line.substr(0, 1) != ";")
-        {
-          find = line.find(";");
-          if (std::string::npos != find)
-            line.erase(find, line.size() - find);
-	  if (line.size() != 0)
-	    content.push_back(line);
-          i++;
-        }
-    }
+    parsing(line);
   i = 0;
   while (i < content.size() && _currentCpu.getExit() == false)
     {
@@ -43,6 +24,7 @@ Chipset::Chipset(const std::string &filename)
     }
   if (_currentCpu.getExit() == false)
     throw nFault("Error there is no 'exit'\n");
+
 }
 
 Chipset::Chipset()
@@ -50,33 +32,14 @@ Chipset::Chipset()
 {
   std::string line;
   std::string tmp;
-  std::vector<std::string> content;
   unsigned int i = 0;
-  size_t find;
+  //  size_t find;
 
   setOperand();
   setOperators();
+
   while(std::getline(std::cin, line) && (tmp = line) != ";;")
-    {
-      find = line.find("  ");
-      while (std::string::npos != find)
-        {
-          line.erase(find, 1);
-          find = line.find("  ");
-        }
-      find = line.find_first_not_of(" ");
-      if (std::string::npos != find)
-	line.erase(0, find);
-      if (line.substr(0, 1) != ";")
-        {
-          find = line.find(";");
-          if (std::string::npos != find)
-            line.erase(find, line.size() - find);
-	  if (line.size() != 0)
-	    content.push_back(line);
-          i++;
-        }
-    }
+    parsing(line);
   if (tmp != ";;")
     throw nFault("Error there is no ;; at end of file\n");
   i = 0;
@@ -91,6 +54,29 @@ Chipset::Chipset()
 
 Chipset::~Chipset()
 {
+}
+
+void          Chipset::parsing(std::string &line)
+{
+  size_t find;
+
+  find = line.find("  ");
+  while (std::string::npos != find)
+    {
+      line.erase(find, 1);
+      find = line.find("  ");
+    }
+  find = line.find_first_not_of(" ");
+  if (std::string::npos != find)
+    line.erase(0, find);
+  if (line.substr(0, 1) != ";")
+    {
+      find = line.find(";");
+      if (std::string::npos != find)
+	line.erase(find, line.size() - find);
+      if (line.size() != 0)
+	content.push_back(line);
+    }
 }
 
 void	Chipset::setOperators()
@@ -120,6 +106,9 @@ IOperand	*Chipset::getOperand(std::string str)
   eOperandType typeOperand;
   std::string value;
 
+  str = str.substr(str.find(" ") + 1, str.size() - str.find(" ") + 1);
+  while (str.find(" ") != std::string::npos)
+    str.erase(str.find(" "), 1);
   try {
       typeOperand = _typemap.at(str.substr(str.find(" ") + 1, str.find("(") - (str.find(" ") + 1)));
     }
