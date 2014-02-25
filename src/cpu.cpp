@@ -37,82 +37,92 @@ void Cpu::dump() const
   _ram.dump();
 }
 
-void Cpu::assert(IOperand* nb) const
+void Cpu::assert(const IOperand* nb) const
 {
   IOperand* tnb = _ram.top();
+  std::string tmpa = nb->toString();
+  std::string tmpb = tnb->toString();
 
   if (nb->getType() == tnb->getType())
     {
-      double tmpa;
-      double tmpb;
-      std::stringstream a(nb->toString());
-      std::stringstream b(tnb->toString());
-      a >> tmpa;
-      b >> tmpb;
       if (tmpa == tmpb)
-        return;
+        {
+          delete nb;
+          return;
+        }
     }
-  throw nFault("Assert failed");
+  delete nb;
+  throw nFault(std::string("Assert(") + tmpa + " == " + tmpb + ") failed.");
 }
 
 void Cpu::add()
 {
   IOperand* a;
   IOperand* b;
+  IOperand* res;
 
-  a = _ram.top();
-  _ram.pop();
+  a = _ram.top(1);
   b = _ram.top();
+  res = (*a) + (*b);
   _ram.pop();
-  _ram.push((*a) + (*b));
+  _ram.pop();
+  _ram.push(res);
 }
 
 void Cpu::sub()
 {
   IOperand* a;
   IOperand* b;
+  IOperand* res;
 
-  a = _ram.top();
-  _ram.pop();
+  a = _ram.top(1);
   b = _ram.top();
+  res = (*a) - (*b);
   _ram.pop();
-  _ram.push((*a) - (*b));
+  _ram.pop();
+  _ram.push(res);
 }
 
 void Cpu::mul()
 {
   IOperand* a;
   IOperand* b;
+  IOperand* res;
 
-  a = _ram.top();
-  _ram.pop();
+  a = _ram.top(1);
   b = _ram.top();
+  res = (*a) * (*b);
   _ram.pop();
-  _ram.push((*a) * (*b));
+  _ram.pop();
+  _ram.push(res);
 }
 
 void Cpu::div()
 {
   IOperand* a;
   IOperand* b;
+  IOperand* res;
 
-  a = _ram.top();
-  _ram.pop();
+  a = _ram.top(1);
   b = _ram.top();
+  res = (*a) / (*b);
   _ram.pop();
-  _ram.push((*a) / (*b));
+  _ram.pop();
+  _ram.push(res);
 }
 
 void Cpu::mod()
 {
   IOperand* a;
   IOperand* b;
+  IOperand* res;
 
-  a = _ram.top();
-  _ram.pop();
+  a = _ram.top(1);
   b = _ram.top();
+  res = (*a) % (*b);
   _ram.pop();
-  _ram.push((*a) % (*b));
+  _ram.pop();
+  _ram.push(res);
 }
 
 void Cpu::print() const

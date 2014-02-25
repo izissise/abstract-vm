@@ -1,0 +1,5 @@
+push double(78456198465)
+push double(5418451)
+mul
+dump
+exit

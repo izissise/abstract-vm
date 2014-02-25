@@ -27,7 +27,7 @@ public:
   void push(IOperand* nb);
   void pop();
   void dump() const;
-  void assert(IOperand* nb) const;
+  void assert(const IOperand* nb) const;
   void add();
   void sub();
   void mul();

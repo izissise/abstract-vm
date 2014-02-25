@@ -1,0 +1,6 @@
+push int32(50)
+assert int32(50)
+dump
+push int32(85)
+assert int32(5)
+exit
