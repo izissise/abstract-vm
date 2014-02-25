@@ -114,14 +114,14 @@ IOperand* Operand<T>::operator-(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      ntmp = (*npreci) + rhs;
+      ntmp = (*npreci) - rhs;
       delete npreci;
       return (ntmp);
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
-  if (((tmp > 0) && (tmpa > std::numeric_limits<T>::max() - tmp))
-      || ((tmp < 0) && (tmpa < std::numeric_limits<T>::min() - tmp)))
+  if (((tmp > 0) && (tmpa > std::numeric_limits<T>::max() + tmp))
+      || ((tmp < 0) && (tmpa < std::numeric_limits<T>::min() + tmp)))
     throw nFault("Under/Overflow on " + _value + " - " + rhs.toString());
   res = (tmpa - tmp);
   return (proc.createOperand(_type, convertFromRType(res)));
@@ -140,7 +140,7 @@ IOperand* Operand<T>::operator*(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      ntmp = (*npreci) + rhs;
+      ntmp = (*npreci) * rhs;
       delete npreci;
       return (ntmp);
     }
@@ -166,7 +166,7 @@ IOperand* Operand<T>::operator/(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      ntmp = (*npreci) + rhs;
+      ntmp = (*npreci) / rhs;
       delete npreci;
       return (ntmp);
     }
@@ -194,7 +194,7 @@ IOperand* Operand<T>::operator%(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      ntmp = (*npreci) + rhs;
+      ntmp = (*npreci) % rhs;
       delete npreci;
       return (ntmp);
     }
@@ -219,7 +219,7 @@ IOperand* Operand<double>::operator%(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      ntmp = (*npreci) + rhs;
+      ntmp = (*npreci) % rhs;
       delete npreci;
       return (ntmp);
     }
@@ -244,7 +244,7 @@ IOperand* Operand<float>::operator%(const IOperand &rhs) const
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
-      ntmp = (*npreci) + rhs;
+      ntmp = (*npreci) % rhs;
       delete npreci;
       return (ntmp);
     }
