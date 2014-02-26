@@ -21,10 +21,7 @@ void	Chipset::parser(const std::string &filename)
     parsing(line);
   i = 0;
   while (i < content.size() && _currentCpu.getExit() == false)
-    {
-      parse(content[i]);
-      i++;
-    }
+    i += parse(content[i]);
   if (_currentCpu.getExit() == false)
     throw nFault("Error there is no 'exit'\n");
 
@@ -42,10 +39,7 @@ void	Chipset::parser()
     throw nFault("Error there is no ;; at end of file\n");
   i = 0;
   while (i < content.size() && _currentCpu.getExit() == false)
-    {
-      parse(content[i]);
-      i++;
-    }
+    i += parse(content[i]);
   if (_currentCpu.getExit() == false)
     throw nFault("Error there is no 'exit'\n");
 }
@@ -117,7 +111,7 @@ IOperand	*Chipset::getOperand(std::string str)
   return (_currentCpu.createOperand(typeOperand, value));
 }
 
-void	Chipset::parse(std::string str)
+int	Chipset::parse(std::string str)
 {
   void (Cpu::*ptr)(void);
   void (Cpu::*ptr2)(void) const;
@@ -126,6 +120,8 @@ void	Chipset::parse(std::string str)
     _currentCpu.push(getOperand(str));
   else if (str.substr(0, str.find(" ")) == "assert")
     _currentCpu.assert(getOperand(str));
+  /*  else if (str.substr(0, str.find(" ")) == "jmp")
+      return _currentCpu.jmp(getOperand(str));*/
   else
     {
       try
@@ -146,4 +142,5 @@ void	Chipset::parse(std::string str)
             }
         }
     }
+  return (1);
 }

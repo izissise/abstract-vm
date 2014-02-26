@@ -30,7 +30,7 @@ private:
   void		setOperators();
   void		setOperand();
   IOperand	*getOperand(std::string str);
-  void		parse(std::string str);
+  int		parse(std::string str);
 };
 
 #endif // CHIPSET_H
