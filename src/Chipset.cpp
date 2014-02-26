@@ -21,7 +21,11 @@ void	Chipset::parser(const std::string &filename)
     parsing(line);
   i = 0;
   while (i < content.size() && _currentCpu.getExit() == false)
-    i += parse(content[i]);
+    {
+      i += parse(content[i]);
+      if (i > content.size())
+	throw nFault("Error jmp on a line witch doesn't exist\n");
+    }
   if (_currentCpu.getExit() == false)
     throw nFault("Error there is no 'exit'\n");
 
@@ -39,7 +43,11 @@ void	Chipset::parser()
     throw nFault("Error there is no ;; at end of file\n");
   i = 0;
   while (i < content.size() && _currentCpu.getExit() == false)
-    i += parse(content[i]);
+    {
+      i += parse(content[i]);
+      if (i > content.size())
+	throw nFault("Error jmp on a line witch doesn't exist\n");
+    }
   if (_currentCpu.getExit() == false)
     throw nFault("Error there is no 'exit'\n");
 }
