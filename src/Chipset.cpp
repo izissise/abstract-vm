@@ -24,7 +24,8 @@ void	Chipset::parser(const std::string &filename)
     {
       i += parse(content[i]);
       if (i > content.size())
-	throw nFault("Error jmp on a line witch doesn't exist\n");
+        throw nFault("Error jmp on a line witch doesn't exist\n");
+      i++;
     }
   if (_currentCpu.getExit() == false)
     throw nFault("Error there is no 'exit'\n");
@@ -46,7 +47,8 @@ void	Chipset::parser()
     {
       i += parse(content[i]);
       if (i > content.size())
-	throw nFault("Error jmp on a line witch doesn't exist\n");
+        throw nFault("Error jmp on a line witch doesn't exist\n");
+      i++;
     }
   if (_currentCpu.getExit() == false)
     throw nFault("Error there is no 'exit'\n");
@@ -56,7 +58,7 @@ Chipset::~Chipset()
 {
 }
 
-void          Chipset::parsing(std::string &line)
+void	Chipset::parsing(std::string &line)
 {
   size_t find;
 
@@ -150,5 +152,5 @@ int	Chipset::parse(std::string str)
             }
         }
     }
-  return (1);
+  return (0);
 }
