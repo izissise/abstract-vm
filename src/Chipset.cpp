@@ -65,9 +65,9 @@ void          Chipset::parsing(std::string &line)
     {
       find = line.find(";");
       if (std::string::npos != find)
-	line.erase(find, line.size() - find);
+        line.erase(find, line.size() - find);
       if (line.size() != 0)
-	content.push_back(line);
+        content.push_back(line);
     }
 }
 
@@ -120,8 +120,8 @@ int	Chipset::parse(std::string str)
     _currentCpu.push(getOperand(str));
   else if (str.substr(0, str.find(" ")) == "assert")
     _currentCpu.assert(getOperand(str));
-  /*  else if (str.substr(0, str.find(" ")) == "jmp")
-      return _currentCpu.jmp(getOperand(str));*/
+  else if (str.substr(0, str.find(" ")) == "jmp")
+    return _currentCpu.jmp(getOperand(str));
   else
     {
       try
