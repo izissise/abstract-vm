@@ -6,12 +6,14 @@
 
 int main(int argc, char **argv)
 {
+  Chipset chip;
+
   try
     {
       if (argc == 1)
-        Chipset();
+        chip.parser();
       else
-        Chipset(std::string(argv[1]));
+        chip.parser(std::string(argv[1]));
     }
   catch (std::exception& e)
     {
