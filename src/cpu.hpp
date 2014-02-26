@@ -36,7 +36,7 @@ public:
   void print() const;
   void exit();
 
-  int jmp(int nb);
+  int jmp(IOperand* nb);
 
   bool getExit() const {return _exited;};
 

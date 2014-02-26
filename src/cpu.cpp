@@ -142,10 +142,16 @@ void Cpu::exit()
   _exited = true;
 }
 
-int Cpu::jmp(int nb)
+int Cpu::jmp(IOperand* nb)
 {
+  int res;
+  std::stringstream stream(nb->toString());
+
+  if (nb->getType() != ::Int8)
+    throw nFault("Type for jmp must be Int8");
+  stream >> res;
   if (_ram.top()->toString() == std::string("0"))
-    return (nb);
+    return (res);
   return (0);
 }
 
