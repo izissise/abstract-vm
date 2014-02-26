@@ -15,8 +15,10 @@ class Chipset
 {
 public:
   Chipset();
-  Chipset(const std::string &filename);
   ~Chipset();
+public:
+  void		parser();
+  void		parser(const std::string &filename);
 private:
   std::map<std::string, void (Cpu::*)(void)>		_operators;
   std::map<std::string, void (Cpu::*)(void) const>	_operatorsConst;

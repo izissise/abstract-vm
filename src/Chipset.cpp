@@ -1,16 +1,20 @@
 #include  <cstdlib>
 #include "Chipset.hpp"
 
-Chipset::Chipset(const std::string &filename)
+
+Chipset::Chipset()
   : _currentCpu(Cpu::Instance())
+{
+  setOperand();
+  setOperators();
+}
+
+void	Chipset::parser(const std::string &filename)
 {
   std::string line;
   std::ifstream ifs(filename.c_str());
   unsigned int i = 0;
-  //  size_t find;
 
-  setOperand();
-  setOperators();
   if (!ifs.is_open())
     throw nFault("Error openning '" + filename + "'\n");
   while(std::getline(ifs, line))
@@ -26,15 +30,11 @@ Chipset::Chipset(const std::string &filename)
 
 }
 
-Chipset::Chipset()
-  : _currentCpu(Cpu::Instance())
+void	Chipset::parser()
 {
   std::string line;
   std::string tmp;
   unsigned int i = 0;
-
-  setOperand();
-  setOperators();
 
   while(std::getline(std::cin, line) && (tmp = line) != ";;")
     parsing(line);
