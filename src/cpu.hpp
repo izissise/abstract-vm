@@ -36,6 +36,8 @@ public:
   void print() const;
   void exit();
 
+  int jmp(int nb);
+
   bool getExit() const {return _exited;};
 
 private:

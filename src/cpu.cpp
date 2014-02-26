@@ -142,6 +142,13 @@ void Cpu::exit()
   _exited = true;
 }
 
+int Cpu::jmp(int nb)
+{
+  if (_ram.top()->toString() == std::string("0"))
+    return (nb);
+  return (0);
+}
+
 IOperand* Cpu::createInt8(const std::string& value)
 {
   return(new Int8(value, ::Int8));
