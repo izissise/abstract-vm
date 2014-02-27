@@ -146,9 +146,11 @@ IOperand* Operand<T>::operator*(const IOperand &rhs) const
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
-  /* if (((tmp > 0) && (tmpa > std::numeric_limits<T>::max() / tmp))
-       || ((tmp < 0) && (tmpa < std::numeric_limits<T>::min() / tmp)))
-     throw nFault("Under/Overflow on " + _value + " * " + rhs.toString());*/
+  if (((tmp > 0 && tmpa > 0) && (tmpa > std::numeric_limits<T>::max() / tmp))
+      || ((tmp < 0 && tmpa < 0) && (tmpa < std::numeric_limits<T>::max() / tmp))
+      || ((tmp < 0 && tmpa > 0) && (tmp < std::numeric_limits<T>::min() / tmpa))
+      || ((tmp > 0 && tmpa < 0) && (tmpa < std::numeric_limits<T>::min() / tmp)))
+    throw nFault("Under/Overflow on " + _value + " * " + rhs.toString());
   res = (tmpa * tmp);
   return (proc.createOperand(_type, convertFromRType(res)));
 }
