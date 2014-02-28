@@ -150,7 +150,7 @@ int Cpu::jmp(IOperand* nb)
   if (nb->getType() != ::Int8)
     throw nFault("Type for jmp must be Int8");
   stream >> res;
-  if (_ram.top()->toString() == std::string("0"))
+  if (_ram.top()->toString() != std::string("0"))
     return (res);
   return (0);
 }

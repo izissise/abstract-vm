@@ -1,0 +1,9 @@
+push int8(50)
+dump
+jmp int8(1)
+exit
+push int8(1)
+sub
+dump
+jmp int8(-4)
+exit
