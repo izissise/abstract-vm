@@ -84,7 +84,11 @@ IOperand* Operand<T>::operator+(const IOperand &rhs) const
   T tmpa;
   T tmp;
   T res;
+  T minimum;
 
+  minimum = std::numeric_limits<T>::min();
+  if (std::numeric_limits<T>::has_denorm)
+    minimum = -std::numeric_limits<T>::max();
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
@@ -95,7 +99,7 @@ IOperand* Operand<T>::operator+(const IOperand &rhs) const
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
   if (((tmp > 0) && (tmpa > std::numeric_limits<T>::max() - tmp))
-      || ((tmp < 0) && (tmpa < std::numeric_limits<T>::min() - tmp)))
+      || ((tmp < 0) && (tmpa < minimum - tmp)))
     throw nFault("Under/Overflow on " + _value + " + " + rhs.toString());
   res = (tmpa + tmp);
   return (proc.createOperand(_type, convertFromRType(res)));
@@ -110,7 +114,11 @@ IOperand* Operand<T>::operator-(const IOperand &rhs) const
   T tmpa;
   T tmp;
   T res;
+  T minimum;
 
+  minimum = std::numeric_limits<T>::min();
+  if (std::numeric_limits<T>::has_denorm)
+    minimum = -std::numeric_limits<T>::max();
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
@@ -121,7 +129,7 @@ IOperand* Operand<T>::operator-(const IOperand &rhs) const
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
   if (((tmp < 0) && (tmpa > std::numeric_limits<T>::max() + tmp))
-      || ((tmp > 0) && (tmpa < std::numeric_limits<T>::min() + tmp)))
+      || ((tmp > 0) && (tmpa < minimum + tmp)))
     throw nFault("Under/Overflow on " + _value + " - " + rhs.toString());
   res = (tmpa - tmp);
   return (proc.createOperand(_type, convertFromRType(res)));
@@ -136,7 +144,11 @@ IOperand* Operand<T>::operator*(const IOperand &rhs) const
   T tmpa;
   T tmp;
   T res;
+  T minimum;
 
+  minimum = std::numeric_limits<T>::min();
+  if (std::numeric_limits<T>::has_denorm)
+    minimum = -std::numeric_limits<T>::max();
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
@@ -146,10 +158,10 @@ IOperand* Operand<T>::operator*(const IOperand &rhs) const
     }
   tmpa = convertToRType(toString());
   tmp = convertToRType(rhs.toString());
-  if (((tmp > 0 && tmpa > 0) && (tmpa > std::numeric_limits<T>::max() / tmp))
-      || ((tmp < 0 && tmpa < 0) && (tmpa < std::numeric_limits<T>::max() / tmp))
-      || ((tmp < 0 && tmpa > 0) && (tmp < std::numeric_limits<T>::min() / tmpa))
-      || ((tmp > 0 && tmpa < 0) && (tmpa < std::numeric_limits<T>::min() / tmp)))
+  if (((tmp > 1 && tmpa > 1) && (tmpa > std::numeric_limits<T>::max() / tmp))
+      || ((tmp < -1 && tmpa < -1) && (tmpa < std::numeric_limits<T>::max() / tmp))
+      || ((tmp < -1 && tmpa > 1) && (tmp < minimum / tmpa))
+      || ((tmp > 1 && tmpa < -1) && (tmpa < minimum / tmp)))
     throw nFault("Under/Overflow on " + _value + " * " + rhs.toString());
   res = (tmpa * tmp);
   return (proc.createOperand(_type, convertFromRType(res)));
@@ -164,7 +176,11 @@ IOperand* Operand<T>::operator/(const IOperand &rhs) const
   T tmpa;
   T tmp;
   T res;
+  T minimum;
 
+  minimum = std::numeric_limits<T>::min();
+  if (std::numeric_limits<T>::has_denorm)
+    minimum = -std::numeric_limits<T>::max();
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
@@ -176,6 +192,11 @@ IOperand* Operand<T>::operator/(const IOperand &rhs) const
   tmp = convertToRType(rhs.toString());
   if (tmp == 0)
     throw nFault("Division by zero");
+  if (((tmp > 0.0 && tmp < 1.0 && tmpa > 0.0) && (tmpa > std::numeric_limits<T>::max() * tmp))
+      || ((tmp < 0.0 && tmp > -1.0 && tmpa > 0.0) && (tmpa < minimum * (-tmp)))
+      || ((tmp > 0.0 && tmp < 1.0 && tmpa < 0.0) && (tmpa < minimum * tmp))
+      || ((tmp < 0.0 && tmp > -1.0 && tmpa < 0.0) && (tmpa < std::numeric_limits<T>::max() * tmp)))
+    throw nFault("Under/Overflow on " + _value + " / " + rhs.toString());
   res = (tmpa / tmp);
   return (proc.createOperand(_type, convertFromRType(res)));
 }
