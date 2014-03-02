@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Chipset.hpp"
 
 Chipset::Chipset()
@@ -71,7 +72,8 @@ void	Chipset::parsing(std::string &line)
     line.erase(0, find);
   if (line.substr(0, 1) != ";")
     {
-      find = line.find(";");
+      std::string::iterator it = std::find(line.begin(), line.end(), ';');
+      find = it - line.begin();
       if (std::string::npos != find)
         line.erase(find, line.size() - find);
       if (line.size() != 0)
