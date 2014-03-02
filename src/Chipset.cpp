@@ -1,6 +1,4 @@
-#include  <cstdlib>
 #include "Chipset.hpp"
-
 
 Chipset::Chipset()
   : _currentCpu(Cpu::Instance())
