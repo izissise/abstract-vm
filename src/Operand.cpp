@@ -176,11 +176,7 @@ IOperand* Operand<T>::operator/(const IOperand &rhs) const
   T tmpa;
   T tmp;
   T res;
-  T minimum;
 
-  minimum = std::numeric_limits<T>::min();
-  if (std::numeric_limits<T>::has_denorm)
-    minimum = -std::numeric_limits<T>::max();
   if (getPrecision() < rhs.getPrecision())
     {
       npreci = proc.createOperand(rhs.getType(), toString());
@@ -192,11 +188,6 @@ IOperand* Operand<T>::operator/(const IOperand &rhs) const
   tmp = convertToRType(rhs.toString());
   if (tmp == 0)
     throw nFault("Division by zero");
-  if (((tmp > 0.0 && tmp < 1.0 && tmpa > 0.0) && (tmpa > std::numeric_limits<T>::max() * tmp))
-      || ((tmp < 0.0 && tmp > -1.0 && tmpa > 0.0) && (tmpa < minimum * (-tmp)))
-      || ((tmp > 0.0 && tmp < 1.0 && tmpa < 0.0) && (tmpa < minimum * tmp))
-      || ((tmp < 0.0 && tmp > -1.0 && tmpa < 0.0) && (tmpa < std::numeric_limits<T>::max() * tmp)))
-    throw nFault("Under/Overflow on " + _value + " / " + rhs.toString());
   res = (tmpa / tmp);
   return (proc.createOperand(_type, convertFromRType(res)));
 }

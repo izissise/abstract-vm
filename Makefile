@@ -5,7 +5,7 @@
 ## Login   <moriss_h@epitech.net>
 ##
 ## Started on  Sun Jun  9 03:35:24 2013 Hugues
-## Last update Tue Feb 11 18:08:18 2014 Hugues
+## Last update Sun Mar  2 13:57:06 2014 Hugues
 ##
 
 SRC		=	main.cpp \
@@ -24,7 +24,7 @@ NAME		=	avm
 OBJDIR		=	obj/
 SRCDIR		=	src/
 
-CFLAGS		+=	-g -Wall -Wextra
+CFLAGS		+=	-Wall -Wextra
 
 LDFLAGS		+=
 
